@@ -3,7 +3,7 @@
 * v2.0.0
 
 # Run in docker
-Run waykichain coin inside a docker container!
+Run greenventureschain coin inside a docker container!
 
 ## Install Dependencies
   * Docker 17.05 or higher is required
