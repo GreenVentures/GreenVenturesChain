@@ -24,9 +24,3 @@ GreenVenturesChain continues to evolve and break things that don't work. In comi
 * security and robustness
 
 GreenVenturesChain will keep abreast of the latest blockchain technologies and take no hesitation in innovating herself for the long term success of the ecosystem.
-
-## :: The team behind GreenVenturesChain
-
-We are a team of technology enthusiasts, dream catchers and dragon trainers (as we believe GreenVenturesChain to us is like Night Fury in "How To Train Your Dragon" movie)! We firmly believe in what we do and take steady steps in building the best blockchain for the target industries and ecosystems.
-
-Please feel free to contanct us (coredev at greenventures.app dot com) and provide us with your feedbacks that can make GreenVenturesChain better for ecosystem partners and participants.
