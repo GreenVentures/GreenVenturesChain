@@ -44,18 +44,18 @@ Value gensendtxraw(const Array& params, bool fHelp) {
                 "3.\"from\":                (string, required) The address where coins are sent from\n"
                 "4.\"to\":                  (string, required) The address where coins are received\n"
                 "5.\"symbol:coin:unit\":    (symbol:amount:unit, required) transferred coins\n"
-                "6.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is WICC:10000:sawi\n"
+                "6.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is GVC:10000:sawi\n"
                 "7.\"memo\":                (string, optional)\n"
                 "\nResult:\n"
                 "\"txid\"                   (string) The transaction id.\n"
                 "\nExamples:\n" +
                 HelpExampleCli("submitsendtx",
                                "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\" \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\" "
-                               "\"WICC:1000000:sawi\" \"WICC:10000:sawi\" \"Hello, WaykiChain!\"") +
+                               "\"GVC:1000000:sawi\" \"GVC:10000:sawi\" \"Hello, GreenVenturesChain!\"") +
                 "\nAs json rpc call\n" +
                 HelpExampleRpc("submitsendtx",
                                "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\", \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\", "
-                               "\"WICC:1000000:sawi\", \"WICC:10000:sawi\", \"Hello, WaykiChain!\""));
+                               "\"GVC:1000000:sawi\", \"GVC:10000:sawi\", \"Hello, GreenVenturesChain!\""));
 
     EnsureWalletIsUnlocked();
 
@@ -63,7 +63,7 @@ Value gensendtxraw(const Array& params, bool fHelp) {
     int32_t height     = params[1].get_int() ;
     CUserID sendUserId = RPC_PARAM::GetUserId(params[2], true);
     CUserID recvUserId = RPC_PARAM::GetUserId(params[3]);
-    ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[4], SYMB::WICC);
+    ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[4], SYMB::GVC);
     ComboMoney cmFee   = RPC_PARAM::GetFee(params, 5, UCOIN_TRANSFER_TX);
 
     if (cmCoin.amount == 0)

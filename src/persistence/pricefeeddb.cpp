@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -84,7 +84,7 @@ bool CPricePointMemCache::AddPriceByBlock(const CBlock &block) {
 bool CPricePointMemCache::DeleteBlockPricePoint(const int32_t blockHeight) {
     if (mapCoinPricePointCache.empty()) {
         // TODO: multi stable coin
-        mapCoinPricePointCache[CoinPricePair(SYMB::WICC, SYMB::USD)].DeleteUserPrice(blockHeight);
+        mapCoinPricePointCache[CoinPricePair(SYMB::GVC, SYMB::USD)].DeleteUserPrice(blockHeight);
         mapCoinPricePointCache[CoinPricePair(SYMB::WGRT, SYMB::USD)].DeleteUserPrice(blockHeight);
     } else {
         for (auto &item : mapCoinPricePointCache) {
@@ -245,11 +245,11 @@ bool CPricePointMemCache::CalcBlockMedianPrices(CCacheWrapper &cw, const int32_t
 
     latest_median_prices = cw.priceFeedCache.GetMedianPrices();
 
-    CoinPricePair bcoinPricePair(SYMB::WICC, SYMB::USD);
+    CoinPricePair bcoinPricePair(SYMB::GVC, SYMB::USD);
     uint64_t bcoinMedianPrice = GetMedianPrice(blockHeight, slideWindow, bcoinPricePair);
     medianPrices.emplace(bcoinPricePair, bcoinMedianPrice);
     LogPrint(BCLog::PRICEFEED, "CPricePointMemCache::CalcBlockMedianPrices, blockHeight: %d, price: %s/%s -> %llu\n",
-             blockHeight, SYMB::WICC, SYMB::USD, bcoinMedianPrice);
+             blockHeight, SYMB::GVC, SYMB::USD, bcoinMedianPrice);
 
     CoinPricePair fcoinPricePair(SYMB::WGRT, SYMB::USD);
     uint64_t fcoinMedianPrice = GetMedianPrice(blockHeight, slideWindow, fcoinPricePair);
@@ -313,7 +313,7 @@ bool CPriceFeedCache::GetPriceFeeders(vector<CRegID>& priceFeeders) {
 
 bool CPriceFeedCache::AddFeedCoinPair(TokenSymbol feedCoin, TokenSymbol baseCoin) {
 
-    if(feedCoin == SYMB::WICC && baseCoin == SYMB::USD)
+    if(feedCoin == SYMB::GVC && baseCoin == SYMB::USD)
         return true ;
 
     set<pair<TokenSymbol,TokenSymbol>> coinPairs ;
@@ -326,7 +326,7 @@ bool CPriceFeedCache::AddFeedCoinPair(TokenSymbol feedCoin, TokenSymbol baseCoin
 
 bool CPriceFeedCache::EraseFeedCoinPair(TokenSymbol feedCoin, TokenSymbol baseCoin) {
 
-    if(feedCoin == SYMB::WICC && baseCoin == SYMB::USD)
+    if(feedCoin == SYMB::GVC && baseCoin == SYMB::USD)
         return true ;
 
     auto coinPair = std::make_pair(feedCoin, baseCoin);
@@ -339,7 +339,7 @@ bool CPriceFeedCache::EraseFeedCoinPair(TokenSymbol feedCoin, TokenSymbol baseCo
 }
 
 bool CPriceFeedCache::HaveFeedCoinPair(TokenSymbol feedCoin,TokenSymbol baseCoin) {
-    if(feedCoin == SYMB::WICC && baseCoin == SYMB::USD)
+    if(feedCoin == SYMB::GVC && baseCoin == SYMB::USD)
         return true ;
 
     set<pair<TokenSymbol, TokenSymbol>> coins ;
@@ -349,6 +349,6 @@ bool CPriceFeedCache::HaveFeedCoinPair(TokenSymbol feedCoin,TokenSymbol baseCoin
 
 bool CPriceFeedCache::GetFeedCoinPairs(set<pair<TokenSymbol,TokenSymbol>>& coinSet) {
     price_feed_coin_cache.GetData(coinSet) ;
-    coinSet.insert(make_pair(SYMB::WICC, SYMB::USD));
+    coinSet.insert(make_pair(SYMB::GVC, SYMB::USD));
     return true ;
 }

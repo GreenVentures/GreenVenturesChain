@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The WaykiChain developers
+// Copyright (c) 2009-2014 The GreenVenturesChain developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -676,14 +676,14 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
                     map<string, vector<string>>& mapMultiSettingsRet) {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())
-        return;  // No WaykiChain.conf file is OK
+        return;  // No GreenVenturesChain.conf file is OK
 
     set<string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end;
          it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override WaykiChain.conf
+        // Don't overwrite existing settings so command line settings override GreenVenturesChain.conf
         string strKey = string("-") + it->string_key;
         if (mapSettingsRet.count(strKey) == 0) {
             mapSettingsRet[strKey] = it->value[0];
@@ -695,7 +695,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 }
 
 fs::path GetPidFile() {
-    fs::path pathPidFile(SysCfg().GetArg("-pid", "coind.pid"));
+    fs::path pathPidFile(SysCfg().GetArg("-pid", "coin.pid"));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
 
     return pathPidFile;

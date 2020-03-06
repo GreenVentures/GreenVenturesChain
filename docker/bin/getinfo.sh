@@ -3,7 +3,7 @@
 # Usage: sh getinfo.sh [$CON_NAME] [$RPC_CMD]
 #
 
-CON_NAME='waykicoind-test'
+CON_NAME='greenventurescoin-test'
 RPC_CMD='getinfo'
 
 if   [[ $# -eq 3 ]]; then
@@ -15,12 +15,12 @@ elif [[ $# -eq 2 ]]; then
     RPC_CMD=$2
 
 elif [[ $# -eq 1 ]]; then
-  if [[ $1 == "waykicoind"* ]]; then
+  if [[ $1 == "greenventurescoin"* ]]; then
     CON_NAME=$1
   else
     RPC_CMD=$1
   fi
 fi
 
-echo "execute RPC command: 'coind $RPC_CMD' on container[$CON_NAME] ..."
-docker exec -it $CON_NAME sh -c "coind $RPC_CMD"
+echo "execute RPC command: 'coin $RPC_CMD' on container[$CON_NAME] ..."
+docker exec -it $CON_NAME sh -c "coin $RPC_CMD"

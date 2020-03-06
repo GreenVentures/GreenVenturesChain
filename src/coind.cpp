@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,8 +18,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for a new crypto currency called WICC
- * (http://www.waykichain.com), which enables instant payments to anyone, anywhere in the world. WICC uses peer-to-peer
+ * This is the developer documentation of the reference client for a new crypto currency called GVC
+ * (http://www.waykichain.com), which enables instant payments to anyone, anywhere in the world. GVC uses peer-to-peer
  * technology to operate with no central authority: managing transactions and issuing money are carried out collectively
  * by the network.
  *
@@ -63,9 +63,9 @@ bool AppInit(int argc, char* argv[], boost::thread_group& threadGroup) {
         SysCfg().InitializeConfig();
 
         if (SysCfg().IsArgCount("-?") || SysCfg().IsArgCount("--help")) {
-            // First part of help message is specific to coind / RPC client
-            std::string strUsage = _("WaykiChain Coin Daemon") + " " + _("version") + " " + FormatFullVersion() +
-                                   "\n\n" + _("Usage:") + "\n" + "  coind [options]                     " +
+            // First part of help message is specific to coin / RPC client
+            std::string strUsage = _("GreenVenturesChain Coin Daemon") + " " + _("version") + " " + FormatFullVersion() +
+                                   "\n\n" + _("Usage:") + "\n" + "  coin [options]                     " +
                                    _("Start Coin Core Daemon") + "\n" + _("Usage (deprecated, use Coin-cli):") + "\n" +
                                    "  coin [options] <command> [params]  " + _("Send command to Coin Core") + "\n" +
                                    "  coin [options] help                " + _("List commands") + "\n" +

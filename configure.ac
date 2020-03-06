@@ -7,7 +7,7 @@ define(_CLIENT_VERSION_IS_RELEASE,  true)
 define(_COPYRIGHT_YEAR, 2020)
 
 AC_PREREQ([2.60])
-AC_INIT([Coin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[info@waykichainhk.com],[Coin])
+AC_INIT([Coin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[info@greenventures.app],[Coin])
 AC_CONFIG_AUX_DIR([src/build-aux])
 AC_CONFIG_MACRO_DIR([src/m4])
 AC_CANONICAL_HOST
@@ -544,8 +544,8 @@ AC_ARG_WITH([cli],
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
   [with daemon (default is no)])],
-  [build_bitcoind=$withval],
-  [build_bitcoind=no])
+  [build_bitcoin=$withval],
+  [build_bitcoin=no])
 
 AC_ARG_WITH([coinlua],
   [AS_HELP_STRING([--with-coinlua],
@@ -597,9 +597,9 @@ else
 
 fi
 
-AC_MSG_CHECKING([whether to build bitcoind])
-AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
-AC_MSG_RESULT($build_bitcoind)
+AC_MSG_CHECKING([whether to build bitcoin])
+AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoin = xyes])
+AC_MSG_RESULT($build_bitcoin)
 
 AC_MSG_CHECKING([whether to build bitcoin-cli])
 AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test x$build_bitcoin_cli = xyes])
@@ -729,7 +729,7 @@ else
   AC_MSG_RESULT([no])
 fi
 
-if test "x$use_tests$build_bitcoind$use_qt" = "xnonono"; then
+if test "x$use_tests$build_bitcoin$use_qt" = "xnonono"; then
   AC_MSG_ERROR([No targets! Please specify at least one of: --enable-cli --enable-daemon --enable-gui or --enable-tests])
 fi
 
@@ -773,7 +773,7 @@ AC_SUBST(EVENT_LIBS)
 AC_SUBST(EVENT_PTHREADS_LIBS)
 
 AC_CONFIG_FILES([Makefile src/Makefile src/tests/ptests/Makefile share/setup.nsi share/qt/Info.plist])
-AC_CONFIG_FILES([qa/pull-tester/run-bitcoind-for-test.sh],[chmod +x qa/pull-tester/run-bitcoind-for-test.sh])
+AC_CONFIG_FILES([qa/pull-tester/run-bitcoin-for-test.sh],[chmod +x qa/pull-tester/run-bitcoin-for-test.sh])
 AC_CONFIG_FILES([qa/pull-tester/build-tests.sh],[chmod +x qa/pull-tester/build-tests.sh])
 
 

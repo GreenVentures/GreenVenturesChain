@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,7 +21,7 @@ class CTxUTXODBCache {
 public:
     CTxUTXODBCache() {};
     CTxUTXODBCache(CDBAccess *pDbAccess) : txUtxoCache(pDbAccess), txUtxoPasswordProofCache(pDbAccess) {};
-    CTxUTXODBCache(CTxUTXODBCache* pBaseIn): txUtxoCache(pBaseIn->txUtxoCache), 
+    CTxUTXODBCache(CTxUTXODBCache* pBaseIn): txUtxoCache(pBaseIn->txUtxoCache),
                 txUtxoPasswordProofCache(pBaseIn->txUtxoPasswordProofCache) {} ;
 
 public:
@@ -33,23 +33,23 @@ public:
     bool GetUtxoPasswordProof(const tuple<TxID, CFixedUInt16, CRegIDKey> &proofKey, uint256 &proof);
     bool DelUtoxPasswordProof(const tuple<TxID, CFixedUInt16, CRegIDKey> &proofKey);
 
-    void Flush() { 
-        txUtxoCache.Flush(); 
-        txUtxoPasswordProofCache.Flush(); 
+    void Flush() {
+        txUtxoCache.Flush();
+        txUtxoPasswordProofCache.Flush();
     }
 
-    uint32_t GetCacheSize() const { 
-        return txUtxoCache.GetCacheSize() + txUtxoPasswordProofCache.GetCacheSize(); 
+    uint32_t GetCacheSize() const {
+        return txUtxoCache.GetCacheSize() + txUtxoPasswordProofCache.GetCacheSize();
     }
 
-    void SetBaseViewPtr(CTxUTXODBCache *pBaseIn) { 
+    void SetBaseViewPtr(CTxUTXODBCache *pBaseIn) {
         txUtxoCache.SetBase(&pBaseIn->txUtxoCache);
-        txUtxoPasswordProofCache.SetBase(&pBaseIn->txUtxoPasswordProofCache); 
+        txUtxoPasswordProofCache.SetBase(&pBaseIn->txUtxoPasswordProofCache);
     }
 
-    void SetDbOpLogMap(CDBOpLogMap *pDbOpLogMapIn) { 
-        txUtxoCache.SetDbOpLogMap(pDbOpLogMapIn); 
-        txUtxoPasswordProofCache.SetDbOpLogMap(pDbOpLogMapIn); 
+    void SetDbOpLogMap(CDBOpLogMap *pDbOpLogMapIn) {
+        txUtxoCache.SetDbOpLogMap(pDbOpLogMapIn);
+        txUtxoPasswordProofCache.SetDbOpLogMap(pDbOpLogMapIn);
     }
 
     void RegisterUndoFunc(UndoDataFuncMap &undoDataFuncMap) {

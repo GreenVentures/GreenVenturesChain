@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The WaykiChain Core Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php
 
@@ -124,7 +124,7 @@ bool ParseRpcInputAccountId(const string &comboAccountIdStr, tuple<AccountIDType
 
 
 
-bool parseAmountAndUnit( vector<string>& comboMoneyArr, ComboMoney& comboMoney,const TokenSymbol &defaultSymbol = SYMB::WICC){
+bool parseAmountAndUnit( vector<string>& comboMoneyArr, ComboMoney& comboMoney,const TokenSymbol &defaultSymbol = SYMB::GVC){
 
     int64_t iValue = 0 ;
 
@@ -166,7 +166,7 @@ bool parseSymbolAndAmount(vector<string>& comboMoneyArr, ComboMoney& comboMoney)
 }
 
 // [symbol]:amount:[unit]
-// [WICC(default)|WUSD|WGRT|...]:amount:[sawi(default)]
+// [GVC(default)|WUSD|WGRT|...]:amount:[sawi(default)]
 bool ParseRpcInputMoney(const string &comboMoneyStr, ComboMoney &comboMoney, const TokenSymbol defaultSymbol) {
     vector<string> comboMoneyArr = split(comboMoneyStr, ':');
 
@@ -451,7 +451,7 @@ ComboMoney RPC_PARAM::GetComboMoney(const Value &jsonValue,
 ComboMoney RPC_PARAM::GetFee(const Array& params, const size_t index, const TxType txType) {
     ComboMoney fee;
     if (params.size() > index) {
-        fee = GetComboMoney(params[index], SYMB::WICC);
+        fee = GetComboMoney(params[index], SYMB::GVC);
         if (!kFeeSymbolSet.count(fee.symbol))
             throw JSONRPCError(RPC_INVALID_PARAMS,
                 strprintf("Fee symbol is %s, but expect %s", fee.symbol, GetFeeSymbolSetStr()));
@@ -465,10 +465,10 @@ ComboMoney RPC_PARAM::GetFee(const Array& params, const size_t index, const TxTy
                 strprintf("The given fee is too small: %llu < %llu sawi", fee.amount, minFee));
     } else {
         uint64_t minFee;
-        if (!GetTxMinFee(txType, chainActive.Height(), SYMB::WICC, minFee))
+        if (!GetTxMinFee(txType, chainActive.Height(), SYMB::GVC, minFee))
             throw JSONRPCError(RPC_INVALID_PARAMS,
-                strprintf("Can not find the min tx fee! symbol=%s", SYMB::WICC));
-        fee.symbol = SYMB::WICC;
+                strprintf("Can not find the min tx fee! symbol=%s", SYMB::GVC));
+        fee.symbol = SYMB::GVC;
         fee.amount = minFee;
         fee.unit = COIN_UNIT::SAWI;
     }
@@ -478,9 +478,9 @@ ComboMoney RPC_PARAM::GetFee(const Array& params, const size_t index, const TxTy
 
 uint64_t RPC_PARAM::GetWiccFee(const Array& params, const size_t index, const TxType txType) {
     uint64_t fee, minFee;
-    if (!GetTxMinFee(txType, chainActive.Height(), SYMB::WICC, minFee))
+    if (!GetTxMinFee(txType, chainActive.Height(), SYMB::GVC, minFee))
         throw JSONRPCError(RPC_INVALID_PARAMS,
-            strprintf("Can not find the min tx fee! symbol=%s", SYMB::WICC));
+            strprintf("Can not find the min tx fee! symbol=%s", SYMB::GVC));
     if (params.size() > index) {
         fee = AmountToRawValue(params[index]);
         if (fee < minFee)

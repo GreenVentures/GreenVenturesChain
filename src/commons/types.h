@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,12 +14,12 @@
 
 using namespace std;
 
-typedef std::string TokenSymbol;     //8 chars max, E.g. WICC, WCNY, WICC-01D
-typedef std::string TokenName;       //32 chars max, E.g. WaykiChain Coins
+typedef std::string TokenSymbol;     //8 chars max, E.g. GVC, WCNY, GVC-01D
+typedef std::string TokenName;       //32 chars max, E.g. GreenVenturesChain Coins
 typedef std::string CoinUnitName;    //defined in coin unit type table
 
 typedef std::pair<TokenSymbol, TokenSymbol> TradingPair;
-typedef std::string AssetSymbol;     //8 chars max, E.g. WICC
+typedef std::string AssetSymbol;     //8 chars max, E.g. GVC
 typedef std::string PriceSymbol;     //8 chars max, E.g. USD, CNY, EUR, BTC
 
 using uint128_t = unsigned __int128;

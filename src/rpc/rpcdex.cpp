@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -179,18 +179,18 @@ Value submitdexbuylimitordertx(const Array& params, bool fHelp) {
             "1.\"addr\": (string required) order owner address\n"
             "2.\"coin_symbol\": (string required) coin type to pay\n"
             "3.\"symbol:asset_amount:unit\",(string:numeric:string,required) the target amount to buy \n "
-            "   default symbol is WICC, default unit is sawi.\n"
+            "   default symbol is GVC, default unit is sawi.\n"
             "4.\"price\": (numeric, required) bidding price willing to buy\n"
             "5.\"dex_id\": (numeric, optional) Decentralized Exchange(DEX) ID, default is 0\n"
-            "6.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "6.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "7.\"memo\": (string, optional) memo\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
-            + HelpExampleCli("submitdexbuylimitordertx", "\"10-3\" \"WUSD\" \"WICC:1000000000:sawi\""
+            + HelpExampleCli("submitdexbuylimitordertx", "\"10-3\" \"WUSD\" \"GVC:1000000000:sawi\""
                              " 100000000 1 \"PRIVATE\"\n")
             + "\nAs json rpc call\n"
-            + HelpExampleRpc("submitdexbuylimitordertx", "\"10-3\", \"WUSD\", \"WICC:1000000000:sawi\","
+            + HelpExampleRpc("submitdexbuylimitordertx", "\"10-3\", \"WUSD\", \"GVC:1000000000:sawi\","
                              " 100000000, 1, \"PRIVATE\"\n")
         );
     }
@@ -202,7 +202,7 @@ Value submitdexbuylimitordertx(const Array& params, bool fHelp) {
 
     const CUserID& userId          = RPC_PARAM::GetUserId(params[0], true);
     const TokenSymbol& coinSymbol  = RPC_PARAM::GetOrderCoinSymbol(params[1]);
-    ComboMoney assetInfo           = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    ComboMoney assetInfo           = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     uint64_t price                 = RPC_PARAM::GetPrice(params[3]);
     DexID dexId                    = RPC_PARAM::GetDexId(params, 4);
     ComboMoney cmFee               = RPC_PARAM::GetFee(params, 5, txType);
@@ -242,18 +242,18 @@ Value submitdexselllimitordertx(const Array& params, bool fHelp) {
             "1.\"addr\": (string required) order owner address\n"
             "2.\"coin_symbol\": (string required) coin type to pay\n"
             "3.\"asset_symbol:asset_amount:unit\",(comboMoney,required) the target amount to sell. "
-            "   default symbol is WICC, default unit is sawi.\n"
+            "   default symbol is GVC, default unit is sawi.\n"
             "4.\"price\": (numeric, required) bidding price willing to buy\n"
             "5.\"dex_id\": (numeric, optional) Decentralized Exchange(DEX) ID, default is 0\n"
-            "6.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "6.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "7.\"memo\": (string, optional) memo\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
-            + HelpExampleCli("submitdexselllimitordertx", "\"10-3\" \"WUSD\" \"WICC:1000000000:sawi\""
+            + HelpExampleCli("submitdexselllimitordertx", "\"10-3\" \"WUSD\" \"GVC:1000000000:sawi\""
                              " 100000000 1 \"PRIVATE\"\n")
             + "\nAs json rpc call\n"
-            + HelpExampleRpc("submitdexselllimitordertx", "\"10-3\", \"WUSD\", \"WICC:1000000000:sawi\","
+            + HelpExampleRpc("submitdexselllimitordertx", "\"10-3\", \"WUSD\", \"GVC:1000000000:sawi\","
                              " 100000000, 1, \"PRIVATE\"\n")
         );
     }
@@ -265,7 +265,7 @@ Value submitdexselllimitordertx(const Array& params, bool fHelp) {
 
     const CUserID& userId          = RPC_PARAM::GetUserId(params[0], true);
     const TokenSymbol& coinSymbol  = RPC_PARAM::GetOrderCoinSymbol(params[1]);
-    ComboMoney assetInfo           = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    ComboMoney assetInfo           = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     uint64_t price                 = RPC_PARAM::GetPrice(params[3]);
     DexID dexId                    = RPC_PARAM::GetDexId(params, 4);
     ComboMoney cmFee               = RPC_PARAM::GetFee(params, 5, txType);
@@ -308,15 +308,15 @@ Value submitdexbuymarketordertx(const Array& params, bool fHelp) {
             "   default symbol is WUSD, default unit is sawi.\n"
             "3.\"asset_symbol\": (string required), asset type to buy\n"
             "4.\"dex_id\": (numeric, optional) Decentralized Exchange(DEX) ID, default is 0\n"
-            "5.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "5.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "6.\"memo\": (string, optional) memo\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
-            + HelpExampleCli("submitdexbuymarketordertx", "\"10-3\" \"WUSD:200000000:sawi\"  \"WICC\""
+            + HelpExampleCli("submitdexbuymarketordertx", "\"10-3\" \"WUSD:200000000:sawi\"  \"GVC\""
                              " 1 \"PRIVATE\"\n")
             + "\nAs json rpc call\n"
-            + HelpExampleRpc("submitdexbuymarketordertx", "\"10-3\", \"WUSD:200000000:sawi\", \"WICC\","
+            + HelpExampleRpc("submitdexbuymarketordertx", "\"10-3\", \"WUSD:200000000:sawi\", \"GVC\","
                              " 1, \"PRIVATE\"\n")
         );
     }
@@ -367,17 +367,17 @@ Value submitdexsellmarketordertx(const Array& params, bool fHelp) {
             "1.\"addr\": (string required) order owner address\n"
             "2.\"coin_symbol\": (string required) coin type to pay\n"
             "3.\"asset_symbol:asset_amount:unit\",(comboMoney,required) the target amount to sell, "
-                                                  "default symbol is WICC, default unit is sawi.\n"
+                                                  "default symbol is GVC, default unit is sawi.\n"
             "4.\"dex_id\": (numeric, optional) Decentralized Exchange(DEX) ID, default is 0\n"
-            "5.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "5.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "6.\"memo\": (string, optional) memo\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
-            + HelpExampleCli("submitdexsellmarketordertx", "\"10-3\" \"WUSD\" \"WICC:200000000:sawi\""
+            + HelpExampleCli("submitdexsellmarketordertx", "\"10-3\" \"WUSD\" \"GVC:200000000:sawi\""
                              " 1 \"PRIVATE\"\n")
             + "\nAs json rpc call\n"
-            + HelpExampleRpc("submitdexsellmarketordertx", "\"10-3\", \"WUSD\", \"WICC:200000000:sawi\","
+            + HelpExampleRpc("submitdexsellmarketordertx", "\"10-3\", \"WUSD\", \"GVC:200000000:sawi\","
                              " 1, \"PRIVATE\"\n")
         );
     }
@@ -389,7 +389,7 @@ Value submitdexsellmarketordertx(const Array& params, bool fHelp) {
 
     const CUserID& userId          = RPC_PARAM::GetUserId(params[0], true);
     const TokenSymbol& coinSymbol  = RPC_PARAM::GetOrderCoinSymbol(params[1]);
-    ComboMoney assetInfo           = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    ComboMoney assetInfo           = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     DexID dexId                    = RPC_PARAM::GetDexId(params, 3);
     ComboMoney cmFee               = RPC_PARAM::GetFee(params, 4, txType);
     string memo                    = RPC_PARAM::GetMemo(params, 5);
@@ -432,21 +432,21 @@ Value gendexoperatorordertx(const Array& params, bool fHelp) {
             "4.\"symbol:coins:unit\": (string:numeric:string, required) the coins(money) of order, coins=0 if not market buy order, \n"
                                                   "default symbol is WUSD, default unit is sawi.\n"
             "5.\"symbol:assets:unit\",(string:numeric:string, required) the assets of order, assets=0 if market buy order"
-                                                  "default symbol is WICC, default unit is sawi.\n"
+                                                  "default symbol is GVC, default unit is sawi.\n"
             "6.\"price\": (numeric, required) expected price of order\n"
             "7.\"dex_id\": (numeric, required) Decentralized Exchange(DEX) ID, default is 0\n"
             "8.\"public_mode\": (string, required) indicate the order is PUBLIC or PRIVATE, defualt is PUBLIC\n"
             "9.\"taker_fee_ratio\": (numeric, required) taker fee ratio config by operator, boost 100000000\n"
             "10.\"maker_fee_ratio\": (numeric, required) maker fee ratio config by operator, boost 100000000\n"
-            "11.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "11.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "12.\"memo\": (string, optional) memo\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
-            + HelpExampleCli("gendexoperatorordertx", "\"10-3\" \"LIMIT_PRICE\" \"BUY\" \"WICC:2000000000:sawi\""
+            + HelpExampleCli("gendexoperatorordertx", "\"10-3\" \"LIMIT_PRICE\" \"BUY\" \"GVC:2000000000:sawi\""
                              " \"WUSD:0\" 100000000 0 \"PUBLIC\" 80000 40000\n")
             + "\nAs json rpc call\n"
-            + HelpExampleRpc("gendexoperatorordertx", "\"10-3\", \"LIMIT_PRICE\", \"BUY\", \"WICC:2000000000:sawi\","
+            + HelpExampleRpc("gendexoperatorordertx", "\"10-3\", \"LIMIT_PRICE\", \"BUY\", \"GVC:2000000000:sawi\","
                              " \"WUSD:0\", 100000000, 0, \"PUBLIC\", 80000, 40000\n")
         );
     }
@@ -460,7 +460,7 @@ Value gendexoperatorordertx(const Array& params, bool fHelp) {
     OrderType orderType      = RPC_PARAM::GetOrderType(params[1]);
     OrderSide orderSide      = RPC_PARAM::GetOrderSide(params[1]);
     const ComboMoney &coins  = RPC_PARAM::GetComboMoney(params[1]);
-    const ComboMoney &assets = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    const ComboMoney &assets = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     uint64_t price           = RPC_PARAM::GetPrice(params[3]);
     DexID dexId              = RPC_PARAM::GetDexId(params[3]);
     PublicMode publicMode    = RPC_PARAM::GetOrderPublicMode(params[4]);
@@ -548,7 +548,7 @@ Value submitdexcancelordertx(const Array& params, bool fHelp) {
             "\nArguments:\n"
             "1.\"addr\": (string required) order owner address\n"
             "2.\"txid\": (string required) order tx want to cancel\n"
-            "3.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "3.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
@@ -596,7 +596,7 @@ Value submitdexsettletx(const Array& params, bool fHelp) {
             "   }\n"
             "       ,...\n"
             " ]\n"
-            "3.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is WICC:10000:sawi\n"
+            "3.\"symbol:fee:unit\":(string:numeric:string, optional) fee paid for miner, default is GVC:10000:sawi\n"
             "\nResult:\n"
             "\"txid\" (string) The transaction id.\n"
             "\nExamples:\n"
@@ -1052,7 +1052,7 @@ extern Value getdexorderfee(const Array& params, bool fHelp) {
         symbolArray.push_back(symbol);
 
     uint64_t actualMinFee = defaultMinFee;
-    auto token = account.GetToken(SYMB::WICC);
+    auto token = account.GetToken(SYMB::GVC);
     if (token.staked_amount > 0) {
         actualMinFee = std::max(std::min(COIN * COIN / token.staked_amount, actualMinFee), (uint64_t)1);
     }
@@ -1063,7 +1063,7 @@ extern Value getdexorderfee(const Array& params, bool fHelp) {
     accountObj.push_back(Pair("nickid", account.nickid.ToString()));
 
     obj.push_back(Pair("block_height", height));
-    obj.push_back(Pair("staked_wicc_amount", token.staked_amount));
+    obj.push_back(Pair("staked_gvc_amount", token.staked_amount));
     obj.push_back(Pair("actual_min_fee", actualMinFee));
     obj.push_back(Pair("default_min_fee", defaultMinFee));
     obj.push_back(Pair("min_fee_for_pubkey", defaultMinFee * 2));

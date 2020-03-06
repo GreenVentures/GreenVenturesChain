@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 WaykiChain Core Developers
+// Copyright (c) 2017-2019 GreenVenturesChain Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php
 
@@ -55,8 +55,8 @@ Value vmexecutescript(const Array& params, bool fHelp) {
             "1.\"addr\":                (string required) contract owner address from this wallet\n"
             "2.\"script_path\":         (string required), the file path of the app script\n"
             "3.\"arguments\":           (string, optional) contract method invoke content (Hex encode required)\n"
-            "4.\"amount\":              (numeric, optional) amount of WICC to send to app account\n"
-            "5.\"symbol:fee:unit\":     (string:numeric:string, optional) fee paid for miner, default is WICC:110010000:sawi\n"
+            "4.\"amount\":              (numeric, optional) amount of GVC to send to app account\n"
+            "5.\"symbol:fee:unit\":     (string:numeric:string, optional) fee paid for miner, default is GVC:110010000:sawi\n"
             "\nResult vm execute detail\n"
             "\nResult:\n"
             "\nExamples:\n"
@@ -122,15 +122,15 @@ Value vmexecutescript(const Array& params, bool fHelp) {
 
     uint64_t regMinFee;
     uint64_t invokeMinFee;
-    if (!GetTxMinFee(LCONTRACT_DEPLOY_TX, chainActive.Height(), SYMB::WICC, regMinFee) ||
-        !GetTxMinFee(LCONTRACT_INVOKE_TX, chainActive.Height(), SYMB::WICC, invokeMinFee))
+    if (!GetTxMinFee(LCONTRACT_DEPLOY_TX, chainActive.Height(), SYMB::GVC, regMinFee) ||
+        !GetTxMinFee(LCONTRACT_INVOKE_TX, chainActive.Height(), SYMB::GVC, invokeMinFee))
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Get tx min fee failed");
 
     uint64_t minFee   = regMinFee + invokeMinFee;
     uint64_t totalFee = regMinFee + invokeMinFee * 10;  // set default totalFee
     if (params.size() > 4) {
         ComboMoney feeIn = RPC_PARAM::GetFee(params, 4, LCONTRACT_DEPLOY_TX);
-        assert(feeIn.symbol == SYMB::WICC);
+        assert(feeIn.symbol == SYMB::GVC);
         totalFee = feeIn.GetSawiAmount();
     }
 
@@ -155,7 +155,7 @@ Value vmexecutescript(const Array& params, bool fHelp) {
 
     uint64_t balance = 0;
     if (spCW->accountCache.GetAccount(srcUserId, account)) {
-        balance = account.GetToken(SYMB::WICC).free_amount;
+        balance = account.GetToken(SYMB::GVC).free_amount;
     }
 
     if (!account.HaveOwnerPubKey()) {

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -363,7 +363,7 @@ static bool CreateNewBlockPreStableCoinRelease(CCacheWrapper &cwIn, std::unique_
             auto fuel        = pBaseTx->GetFuel(height, fuelRate);
             auto fees_symbol = std::get<0>(pBaseTx->GetFees());
             auto fees        = std::get<1>(pBaseTx->GetFees());
-            assert(fees_symbol == SYMB::WICC);
+            assert(fees_symbol == SYMB::GVC);
 
             totalBlockSize += txSize;
             totalRunStep += pBaseTx->nRunStep;
@@ -443,7 +443,7 @@ static bool CreateNewBlockStableCoinRelease(int64_t startMiningMs, CCacheWrapper
         uint64_t totalRunStep              = 0;
         uint64_t totalFees                 = 0;
         uint64_t totalFuel                 = 0;
-        map<TokenSymbol, uint64_t> rewards = {{SYMB::WICC, 0}, {SYMB::WUSD, 0}};
+        map<TokenSymbol, uint64_t> rewards = {{SYMB::GVC, 0}, {SYMB::WUSD, 0}};
 
         // Calculate && sort transactions from memory pool.
         set<TxPriority> txPriorities;
@@ -522,7 +522,7 @@ static bool CreateNewBlockStableCoinRelease(int64_t startMiningMs, CCacheWrapper
             auto fuel        = pBaseTx->GetFuel(height, fuelRate);
             auto fees_symbol = std::get<0>(pBaseTx->GetFees());
             auto fees        = std::get<1>(pBaseTx->GetFees());
-            assert(fees_symbol == SYMB::WICC || fees_symbol == SYMB::WUSD);
+            assert(fees_symbol == SYMB::GVC || fees_symbol == SYMB::WUSD);
 
             totalBlockSize += txSize;
             totalRunStep += pBaseTx->nRunStep;

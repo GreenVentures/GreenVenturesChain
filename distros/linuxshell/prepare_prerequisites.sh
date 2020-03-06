@@ -13,7 +13,7 @@ ARCH=$( uname )
 case "$ARCH" in
   "Linux")
     if [ ! -e /etc/os-release ]; then
-      printf "\\nWaykiChain Core currently supports Ubuntu, Centos Linux only.\\n"
+      printf "\\nGreenVenturesChain Core currently supports Ubuntu, Centos Linux only.\\n"
       printf "Please install on the latest version of one of these Linux distributions.\\n"
       printf "https://www.centos.org/\\n"
       printf "https://www.ubuntu.com/\\n"
@@ -31,13 +31,13 @@ case "$ARCH" in
     case "$OS_NAME" in
       "Ubuntu")
         if [ "${OS_MAJ}" -lt 14 ]; then
-          printf "You must be running Ubuntu 14.x or higher to install WaykiChain Core.\\n"
+          printf "You must be running Ubuntu 14.x or higher to install GreenVenturesChain Core.\\n"
           printf "Exiting now.\\n"
           exit 1
         fi
 
         if [ $OS_MAJ -gt 18 ]; then
-          printf "You must be running Ubuntu 18.x or lower to install WaykiChain Core.\\n"
+          printf "You must be running Ubuntu 18.x or lower to install GreenVenturesChain Core.\\n"
           printf "Exiting now.\\n"
           exit 1
         fi
@@ -59,7 +59,7 @@ case "$ARCH" in
       ;;
       "CentOS Linux")
         if [ "${OS_MAJ}" -lt 7 ]; then
-          printf "You must be running CentOS 7.x to install WaykiChain Core.\\n"
+          printf "You must be running CentOS 7.x to install GreenVenturesChain Core.\\n"
           printf "Exiting now.\\n"
           exit 1
         fi

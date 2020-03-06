@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -71,15 +71,15 @@ bool AppInit(int argc, char *argv[], boost::thread_group &threadGroup) {
         PrintTestNotSetPara();
 
         if (SysCfg().IsArgCount("-?") || SysCfg().IsArgCount("--help")) {
-            // First part of help message is specific to waykicoind / RPC client
+            // First part of help message is specific to greenventurescoin / RPC client
             std::string strUsage =
                 _("WaykiCoin Core Daemon") + " " + _("version") + " " + FormatFullVersion() +
-                "\n\n" + _("Usage:") + "\n" + "  waykicoind [options]                     " +
+                "\n\n" + _("Usage:") + "\n" + "  greenventurescoin [options]                     " +
                 _("Start WaykiCoin Core Daemon") + "\n" + _("Usage (deprecated, use Coin-cli):") +
-                "\n" + "  waykicoind [options] <command> [params]  " +
+                "\n" + "  greenventurescoin [options] <command> [params]  " +
                 _("Send command to WaykiCoin Core") + "\n" +
-                "  waykicoind [options] help                " + _("List commands") + "\n" +
-                "  waykicoind [options] help <command>      " + _("Get help for a command") + "\n";
+                "  greenventurescoin [options] help                " + _("List commands") + "\n" +
+                "  greenventurescoin [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessage();
             strUsage += "\n" + HelpMessageCli(false);
@@ -570,7 +570,7 @@ bool SysTestBase::DisConnectBlock(int nNum) {
 
 void SysTestBase::StartServer(int argc, const char *argv[]) {
     //        int argc = 2;
-    //        char* argv[] = {"D:\\cppwork\\Coin\\src\\coind.exe","-datadir=d:\\bitcoin" };
+    //        char* argv[] = {"D:\\cppwork\\Coin\\src\\coin.exe","-datadir=d:\\bitcoin" };
     assert(pThreadShutdown == NULL);
     {
         std::tuple<bool, boost::thread *> ret = RunCoin(argc, const_cast<char **>(argv));

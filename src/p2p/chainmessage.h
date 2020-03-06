@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -598,7 +598,7 @@ inline void ProcessGetBlocksMessage(CNode *pFrom, CDataStream &vRecv) {
         // pFrom->PushInventory(CInv(MSG_BLOCK, pIndex->GetBlockHash()), forced);
         bool force_to_send_again = false;
         if (pIndex == pStartIndex || pIndex->pprev == pStartIndex)
-            force_to_send_again = true;        
+            force_to_send_again = true;
         pFrom->PushInventory(CInv(MSG_BLOCK, pIndex->GetBlockHash()), force_to_send_again);
         if (--nLimit <= 0) {
             // When this block is requested, we'll send an inv that'll make them

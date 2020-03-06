@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -94,7 +94,7 @@ public:
         : CBaseTx(CDP_REDEEM_TX, txUidIn, validHeightIn, cmFeeIn.symbol, cmFeeIn.GetSawiAmount()),
           cdp_txid(cdpTxId),
           scoins_to_repay(scoinsToRepay),
-          assets_to_redeem( { {SYMB::WICC, bcoinsToRedeem} }) {}
+          assets_to_redeem( { {SYMB::GVC, bcoinsToRedeem} }) {}
 
     ~CCDPRedeemTx() {}
 

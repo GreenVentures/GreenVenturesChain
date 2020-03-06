@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -76,7 +76,7 @@ bool CDelegateVoteTx::ExecuteTx(CTxExecuteContext &context) {
         return false;
     }
 
-    if (!srcAccount.OperateBalance(SYMB::WICC, SUB_FREE, llFees)) {
+    if (!srcAccount.OperateBalance(SYMB::GVC, SUB_FREE, llFees)) {
         return state.DoS(100, ERRORMSG("CDelegateVoteTx::ExecuteTx, operate account failed, txUid=%s",
                         txUid.ToString()), UPDATE_ACCOUNT_FAIL, "operate-account-failed");
     }

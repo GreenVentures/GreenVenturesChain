@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -213,8 +213,8 @@ struct CPasswordHashLockCondOut: CUtxoCond {
         READWRITE(password_hash);
     )
 
-    std::string ToString() { 
-        return strprintf("cond_type=\"OP2PH\",password_proof_required=%d, password_hash=\"%s\"", 
+    std::string ToString() {
+        return strprintf("cond_type=\"OP2PH\",password_proof_required=%d, password_hash=\"%s\"",
                         password_proof_required, password_hash.ToString());
     }
 };

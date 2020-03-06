@@ -5,8 +5,8 @@
 #define VER_PRODUCTVERSION_STR "v" STRINGIZE(CLIENT_VERSION_MAJOR) "." STRINGIZE(CLIENT_VERSION_MINOR) "." STRINGIZE(CLIENT_VERSION_REVISION) "." STRINGIZE(CLIENT_VERSION_BUILD)
 #define VER_FILEVERSION        VER_PRODUCTVERSION
 #define VER_FILEVERSION_STR    VER_PRODUCTVERSION_STR
-#define COPYRIGHT_STR          "2016-" STRINGIZE(COPYRIGHT_YEAR) " The WaykiChain Core developers"
- 
+#define COPYRIGHT_STR          "2016-" STRINGIZE(COPYRIGHT_YEAR) " The GreenVenturesChain Core developers"
+
 VS_VERSION_INFO VERSIONINFO
 FILEVERSION     VER_FILEVERSION
 PRODUCTVERSION  VER_PRODUCTVERSION
@@ -17,13 +17,13 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "WaykiChain"
+            VALUE "CompanyName",        "GreenVenturesChain"
             VALUE "FileDescription",    "coin (OSS daemon/client for coin)"
             VALUE "FileVersion",        VER_PRODUCTVERSION_STR
             VALUE "InternalName",       "coin"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "coind.exe"
+            VALUE "OriginalFilename",   "coin.exe"
             VALUE "ProductName",        "coin"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END

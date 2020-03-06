@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,18 +8,18 @@
 
 #include "tx.h"
 
-/**################################ Base Coin (WICC) Transfer ########################################**/
+/**################################ Base Coin (GVC) Transfer ########################################**/
 class CBaseCoinTransferTx : public CBaseTx {
 public:
     mutable CUserID toUid;  // Recipient Regid or Keyid
-    uint64_t coin_amount;   // coin amount (coin symbol: WICC)
+    uint64_t coin_amount;   // coin amount (coin symbol: GVC)
     string memo;
 
 public:
     CBaseCoinTransferTx() : CBaseTx(BCOIN_TRANSFER_TX) {}
     CBaseCoinTransferTx(const CUserID &txUidIn, const CUserID &toUidIn, const int32_t validHeightIn,
                         const uint64_t coinAmount, const uint64_t feesIn, const string &memoIn)
-        : CBaseTx(BCOIN_TRANSFER_TX, txUidIn, validHeightIn, SYMB::WICC, feesIn),
+        : CBaseTx(BCOIN_TRANSFER_TX, txUidIn, validHeightIn, SYMB::GVC, feesIn),
           toUid(toUidIn),
           coin_amount(coinAmount),
           memo(memoIn) {}

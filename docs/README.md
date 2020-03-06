@@ -1,11 +1,11 @@
-WaykiChain v2.0.0.0
+GreenVenturesChain v2.0.0.0
 =====================
 
-Copyright (c) 2017-2019 WaykiChain Core Developers
+Copyright (c) 2017-2019 GreenVenturesChain Core Developers
 
 ### Need Help?
 
-* See the documentation at the [WaykiChain DevDocs](https://wicc-devbook.readthedocs.io/en/latest/)
+* See the documentation at the [GreenVenturesChain DevDocs](https://gvc-devbook.readthedocs.io/en/latest/)
 for help and more information.
 
 

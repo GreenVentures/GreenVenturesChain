@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -314,15 +314,15 @@ Object CAccountDBCache::GetAccountDBStats() {
     for (auto &item : items) {
         totalRegIds++;
 
-        CAccountToken wicc = item.second.GetToken(SYMB::WICC);
+        CAccountToken gvc = item.second.GetToken(SYMB::GVC);
         CAccountToken wusd = item.second.GetToken(SYMB::WUSD);
         CAccountToken wgrt = item.second.GetToken(SYMB::WGRT);
 
-        bcoinsStates[0] += wicc.free_amount;
-        bcoinsStates[1] += wicc.voted_amount;
-        bcoinsStates[2] += wicc.frozen_amount;
-        bcoinsStates[3] += wicc.staked_amount;
-        bcoinsStates[4] += wicc.pledged_amount;
+        bcoinsStates[0] += gvc.free_amount;
+        bcoinsStates[1] += gvc.voted_amount;
+        bcoinsStates[2] += gvc.frozen_amount;
+        bcoinsStates[3] += gvc.staked_amount;
+        bcoinsStates[4] += gvc.pledged_amount;
 
         scoinsStates[0] += wusd.free_amount;
         scoinsStates[1] += wusd.voted_amount;
@@ -336,18 +336,18 @@ Object CAccountDBCache::GetAccountDBStats() {
         fcoinsStates[3] += wgrt.staked_amount;
         fcoinsStates[4] += wgrt.pledged_amount;
 
-        totalBCoins += wicc.free_amount + wicc.voted_amount + wicc.frozen_amount + wicc.staked_amount + wicc.pledged_amount;
-        totalSCoins += wusd.free_amount + wusd.voted_amount + wusd.frozen_amount + wusd.staked_amount + wicc.pledged_amount;
-        totalFCoins += wgrt.free_amount + wgrt.voted_amount + wgrt.frozen_amount + wgrt.staked_amount + wicc.pledged_amount;
+        totalBCoins += gvc.free_amount + gvc.voted_amount + gvc.frozen_amount + gvc.staked_amount + gvc.pledged_amount;
+        totalSCoins += wusd.free_amount + wusd.voted_amount + wusd.frozen_amount + wusd.staked_amount + gvc.pledged_amount;
+        totalFCoins += wgrt.free_amount + wgrt.voted_amount + wgrt.frozen_amount + wgrt.staked_amount + gvc.pledged_amount;
     }
 
-    Object obj_wicc;
-    obj_wicc.push_back(Pair("free_amount",      ValueFromAmount(bcoinsStates[0])));
-    obj_wicc.push_back(Pair("voted_amount",     ValueFromAmount(bcoinsStates[1])));
-    obj_wicc.push_back(Pair("frozen_amount",    ValueFromAmount(bcoinsStates[2])));
-    obj_wicc.push_back(Pair("staked_amount",    ValueFromAmount(bcoinsStates[3])));
-    obj_wicc.push_back(Pair("pledged_amount",   ValueFromAmount(bcoinsStates[4])));
-    obj_wicc.push_back(Pair("total_amount",     ValueFromAmount(totalBCoins)));
+    Object obj_gvc;
+    obj_gvc.push_back(Pair("free_amount",      ValueFromAmount(bcoinsStates[0])));
+    obj_gvc.push_back(Pair("voted_amount",     ValueFromAmount(bcoinsStates[1])));
+    obj_gvc.push_back(Pair("frozen_amount",    ValueFromAmount(bcoinsStates[2])));
+    obj_gvc.push_back(Pair("staked_amount",    ValueFromAmount(bcoinsStates[3])));
+    obj_gvc.push_back(Pair("pledged_amount",   ValueFromAmount(bcoinsStates[4])));
+    obj_gvc.push_back(Pair("total_amount",     ValueFromAmount(totalBCoins)));
 
     Object obj_wusd;
     obj_wusd.push_back(Pair("free_amount",      ValueFromAmount(scoinsStates[0])));
@@ -355,7 +355,7 @@ Object CAccountDBCache::GetAccountDBStats() {
     obj_wusd.push_back(Pair("frozen_amount",    ValueFromAmount(scoinsStates[2])));
     obj_wusd.push_back(Pair("staked_amount",    ValueFromAmount(scoinsStates[3])));
     obj_wusd.push_back(Pair("pledged_amount",   ValueFromAmount(scoinsStates[4])));
-    obj_wicc.push_back(Pair("total_amount",     ValueFromAmount(totalSCoins)));
+    obj_gvc.push_back(Pair("total_amount",     ValueFromAmount(totalSCoins)));
 
     Object obj_wgrt;
     obj_wgrt.push_back(Pair("free_amount",      ValueFromAmount(fcoinsStates[0])));
@@ -363,10 +363,10 @@ Object CAccountDBCache::GetAccountDBStats() {
     obj_wgrt.push_back(Pair("frozen_amount",    ValueFromAmount(fcoinsStates[2])));
     obj_wgrt.push_back(Pair("staked_amount",    ValueFromAmount(fcoinsStates[3])));
     obj_wgrt.push_back(Pair("pledged_amount",   ValueFromAmount(fcoinsStates[4])));
-    obj_wicc.push_back(Pair("total_amount",     ValueFromAmount(totalFCoins)));
+    obj_gvc.push_back(Pair("total_amount",     ValueFromAmount(totalFCoins)));
 
     Object obj;
-    obj.push_back(Pair("WICC",          obj_wicc));
+    obj.push_back(Pair("GVC",          obj_gvc));
     obj.push_back(Pair("WUSD",          obj_wusd));
     obj.push_back(Pair("WGRT",          obj_wgrt));
     obj.push_back(Pair("total_regids",  totalRegIds));

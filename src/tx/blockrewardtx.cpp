@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -26,12 +26,12 @@ bool CBlockRewardTx::ExecuteTx(CTxExecuteContext &context) {
     } else if (-1 == context.index) {
         // When the reward transaction is mature, update account's balances, i.e, assign the reward value to
         // the target account.
-        if (!account.OperateBalance(SYMB::WICC, ADD_FREE, reward_fees)) {
+        if (!account.OperateBalance(SYMB::GVC, ADD_FREE, reward_fees)) {
             return state.DoS(100, ERRORMSG("CBlockRewardTx::ExecuteTx, opeate account failed"), UPDATE_ACCOUNT_FAIL,
                              "operate-account-failed");
         }
 
-        CReceipt receipt(nullId, txUid, SYMB::WICC, reward_fees, ReceiptCode::BLOCK_REWARD_TO_MINER);
+        CReceipt receipt(nullId, txUid, SYMB::GVC, reward_fees, ReceiptCode::BLOCK_REWARD_TO_MINER);
         if (!cw.txReceiptCache.SetTxReceipts(GetHash(), {receipt})) {
             return state.DoS(100, ERRORMSG("CBlockRewardTx::ExecuteTx, set tx receipts failed!! txid=%s",
                             GetHash().ToString()), REJECT_INVALID, "set-tx-receipt-failed");
@@ -95,8 +95,8 @@ bool CUCoinBlockRewardTx::ExecuteTx(CTxExecuteContext &context) {
         for (const auto &item : reward_fees) {
             uint64_t rewardAmount  = item.second;
             TokenSymbol coinSymbol = item.first;
-            // FIXME: support WICC/WUSD only.
-            if (coinSymbol == SYMB::WICC || coinSymbol == SYMB::WUSD) {
+            // FIXME: support GVC/WUSD only.
+            if (coinSymbol == SYMB::GVC || coinSymbol == SYMB::WUSD) {
                 if (!account.OperateBalance(coinSymbol, ADD_FREE, rewardAmount)) {
                     return state.DoS(100, ERRORMSG("CUCoinBlockRewardTx::ExecuteTx, opeate account failed"),
                                      UPDATE_ACCOUNT_FAIL, "operate-account-failed");
@@ -108,11 +108,11 @@ bool CUCoinBlockRewardTx::ExecuteTx(CTxExecuteContext &context) {
         }
 
         // Assign profits to the delegate's account.
-        if (!account.OperateBalance(SYMB::WICC, ADD_FREE, inflated_bcoins)) {
+        if (!account.OperateBalance(SYMB::GVC, ADD_FREE, inflated_bcoins)) {
             return state.DoS(100, ERRORMSG("CUCoinBlockRewardTx::ExecuteTx, opeate account failed"),
                              UPDATE_ACCOUNT_FAIL, "operate-account-failed");
         }
-        receipts.emplace_back(nullId, txUid, SYMB::WICC, inflated_bcoins, ReceiptCode::COIN_BLOCK_INFLATE);
+        receipts.emplace_back(nullId, txUid, SYMB::GVC, inflated_bcoins, ReceiptCode::COIN_BLOCK_INFLATE);
 
         if (!cw.txReceiptCache.SetTxReceipts(GetHash(), receipts)) {
             return state.DoS(100, ERRORMSG("CUCoinBlockRewardTx::ExecuteTx, set tx receipts failed!! txid=%s",

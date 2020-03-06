@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -98,14 +98,14 @@ Value addmulsigaddr(const Array& params, bool fHelp) {
             "\nArguments:\n"
             "1. num_signatures  (numeric, required) The number of required signatures out of the "
             "n keys or addresses.\n"
-            "2. \"keys\"   (string, required) A json array of WICC addresses or "
+            "2. \"keys\"   (string, required) A json array of GVC addresses or "
             "hex-encoded public keys\n"
             "[\n"
-            "  \"address\"  (string) WICC address or hex-encoded public key\n"
+            "  \"address\"  (string) GVC address or hex-encoded public key\n"
             "  ...,\n"
             "]\n"
             "\nResult:\n"
-            "\"addr\"  (string) A WICC address.\n"
+            "\"addr\"  (string) A GVC address.\n"
             "\nExamples:\n"
             "\nAdd a 2-3 multisig address from 3 addresses\n" +
             HelpExampleCli("addmulsigaddr",
@@ -170,14 +170,14 @@ Value createmulsig(const Array& params, bool fHelp) {
             "\nArguments:\n"
             "1. num_signatures  (numeric, required) The number of required signatures out of the "
             "n keys or addresses.\n"
-            "2. \"keys\"   (string, required) A json array of WICC addresses or "
+            "2. \"keys\"   (string, required) A json array of GVC addresses or "
             "hex-encoded public keys\n"
             "[\n"
-            "\"address\"  (string) WICC address or hex-encoded public key\n"
+            "\"address\"  (string) GVC address or hex-encoded public key\n"
             "  ...,\n"
             "]\n"
             "\nResult:\n"
-            "\"addr\"  (string) A WICC address.\n"
+            "\"addr\"  (string) A GVC address.\n"
             "\nExamples:\n"
             "\nCreate a 2-3 multisig address from 3 addresses\n" +
             HelpExampleCli("createmulsig",
@@ -290,24 +290,24 @@ Value submitsendtx(const Array& params, bool fHelp) {
             "1.\"from\":                (string, required) The address where coins are sent from\n"
             "2.\"to\":                  (string, required) The address where coins are received\n"
             "3.\"symbol:coin:unit\":    (symbol:amount:unit, required) transferred coins\n"
-            "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is WICC:10000:sawi\n"
+            "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is GVC:10000:sawi\n"
             "5.\"memo\":                (string, optional)\n"
             "\nResult:\n"
             "\"txid\"                   (string) The transaction id.\n"
             "\nExamples:\n" +
             HelpExampleCli("submitsendtx",
                            "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\" \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\" "
-                           "\"WICC:1000000:sawi\" \"WICC:10000:sawi\" \"Hello, WaykiChain!\"") +
+                           "\"GVC:1000000:sawi\" \"GVC:10000:sawi\" \"Hello, GreenVenturesChain!\"") +
             "\nAs json rpc call\n" +
             HelpExampleRpc("submitsendtx",
                            "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\", \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\", "
-                           "\"WICC:1000000:sawi\", \"WICC:10000:sawi\", \"Hello, WaykiChain!\""));
+                           "\"GVC:1000000:sawi\", \"GVC:10000:sawi\", \"Hello, GreenVenturesChain!\""));
 
     EnsureWalletIsUnlocked();
 
     CUserID sendUserId = RPC_PARAM::GetUserId(params[0], true);
     CUserID recvUserId = RPC_PARAM::GetUserId(params[1]);
-    ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     ComboMoney cmFee   = RPC_PARAM::GetFee(params, 3, UCOIN_TRANSFER_TX);
 
     auto pSymbolErr = pCdMan->pAssetCache->CheckAssetSymbol(cmCoin.symbol);
@@ -329,8 +329,8 @@ Value submitsendtx(const Array& params, bool fHelp) {
         pBaseTx = std::make_shared<CCoinTransferTx>(sendUserId, recvUserId, height, cmCoin.symbol,
             cmCoin.GetSawiAmount(), cmFee.symbol, cmFee.GetSawiAmount(), memo);
     } else { // MAJOR_VER_R1
-        if (cmCoin.symbol != SYMB::WICC || cmFee.symbol != SYMB::WICC)
-            throw JSONRPCError(REJECT_INVALID, strprintf("Only support WICC for coin symbol or fee symbol before "
+        if (cmCoin.symbol != SYMB::GVC || cmFee.symbol != SYMB::GVC)
+            throw JSONRPCError(REJECT_INVALID, strprintf("Only support GVC for coin symbol or fee symbol before "
                 "height=%u! current height=%d", SysCfg().GetFeatureForkHeight(), height));
 
         if (sendUserId.is<CKeyID>())
@@ -356,7 +356,7 @@ Value genmulsigtx(const Array& params, bool fHelp) {
             "1.\"multisigscript\":      (string, required) The address where coins are sent from\n"
             "2.\"to\":                  (string, required) The address where coins are received\n"
             "3.\"symbol:coin:unit\":    (symbol:amount:unit, required) transferred coins\n"
-            "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is WICC:10000:sawi\n"
+            "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is GVC:10000:sawi\n"
             "5.\"memo\":                (string, optional)\n"
             "\nResult:\n"
             "\"rawtx\"                  (string) The raw transaction without any signatures\n"
@@ -365,16 +365,16 @@ Value genmulsigtx(const Array& params, bool fHelp) {
                            "\"0203210233e68ec1402f875af47201efca7c9f210c93f10016ad73d6cd789212d5571"
                            "e9521031f3d66a05bf20e83e046b74d9073d925f5dce29970623595bc4d66ed81781dd5"
                            "21034819476f12ac0e53bd82bc3205c91c40e9c569b08af8db04503afdebceb7134c\" "
-                           "\"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\" \"WICC:1000000:sawi\" \"WICC:10000:sawi\" \"Hello, "
-                           "WaykiChain!\"") +
+                           "\"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\" \"GVC:1000000:sawi\" \"GVC:10000:sawi\" \"Hello, "
+                           "GreenVenturesChain!\"") +
             "\nAs json rpc call\n" +
             HelpExampleRpc(
                 "genmulsigtx",
                 "\"0203210233e68ec1402f875af47201efca7c9f210c93f10016ad73d6cd789212d5571e9521031f3d"
                 "66a05bf20e83e046b74d9073d925f5dce29970623595bc4d66ed81781dd521034819476f12ac0e53bd"
                 "82bc3205c91c40e9c569b08af8db04503afdebceb7134c\", "
-                "\"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\", \"WICC:1000000:sawi\", \"WICC:10000:sawi\", \"Hello, "
-                "WaykiChain!\""));
+                "\"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\", \"GVC:1000000:sawi\", \"GVC:10000:sawi\", \"Hello, "
+                "GreenVenturesChain!\""));
 
     EnsureWalletIsUnlocked();
 
@@ -404,7 +404,7 @@ Value genmulsigtx(const Array& params, bool fHelp) {
     }
 
     CUserID recvUserId = RPC_PARAM::GetUserId(params[1]);
-    ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     ComboMoney cmFee   = RPC_PARAM::GetFee(params, 3, UCOIN_TRANSFER_MTX);
 
     auto pSymbolErr = pCdMan->pAssetCache->CheckAssetSymbol(cmCoin.symbol);
@@ -738,7 +738,7 @@ Value getwalletinfo(const Array& params, bool fHelp) {
     Object obj;
 
     obj.push_back(Pair("wallet_version",    pWalletMain->GetVersion()));
-    obj.push_back(Pair("WICC_balance",      ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::WICC))));
+    obj.push_back(Pair("GVC_balance",      ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::GVC))));
     obj.push_back(Pair("WUSD_balance",      ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::WUSD))));
     obj.push_back(Pair("WGRT_balance",      ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::WGRT))));
     obj.push_back(Pair("wallet_encrypted",  pWalletMain->IsEncrypted()));

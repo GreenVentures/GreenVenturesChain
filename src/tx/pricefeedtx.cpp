@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -111,7 +111,7 @@ bool CPriceFeedTx::ExecuteTx(CTxExecuteContext &context) {
         return state.DoS(100, ERRORMSG("CPriceFeedTx::ExecuteTx, read PRICE_FEED_BCOIN_STAKE_AMOUNT_MIN error",
                         txUid.ToString()), READ_SYS_PARAM_FAIL, "read-sysparamdb-error");
     }
-    CAccountToken accountToken = account.GetToken(SYMB::WICC);
+    CAccountToken accountToken = account.GetToken(SYMB::GVC);
     if (accountToken.staked_amount < stakedAmountMin * COIN) // must stake enough bcoins to be a price feeder
         return state.DoS(100, ERRORMSG("CPriceFeedTx::ExecuteTx, Staked Bcoins insufficient(%llu vs %llu) by txUid %s account error",
                         accountToken.voted_amount, stakedAmountMin, txUid.ToString()),

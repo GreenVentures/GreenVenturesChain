@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,9 +9,9 @@
 #include "tx.h"
 
 struct CUserIssuedAsset {
-    TokenSymbol asset_symbol;       //asset symbol, E.g WICC | WUSD
+    TokenSymbol asset_symbol;       //asset symbol, E.g GVC | WUSD
     CUserID     owner_uid;          //creator or owner user id of the asset
-    TokenName   asset_name;         //asset long name, E.g WaykiChain coin
+    TokenName   asset_name;         //asset long name, E.g GreenVenturesChain coin
     uint64_t    total_supply;       //boosted by 10^8 for the decimal part, max is 90 billion.
     bool        mintable;           //whether this token can be minted in the future.
 

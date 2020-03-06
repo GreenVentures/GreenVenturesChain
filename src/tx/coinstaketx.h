@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,7 +16,7 @@ private:
 
 public:
     CCoinStakeTx()
-        : CBaseTx(UCOIN_STAKE_TX), stake_type(BalanceOpType::NULL_OP), coin_symbol(SYMB::WICC), coin_amount(0) {}
+        : CBaseTx(UCOIN_STAKE_TX), stake_type(BalanceOpType::NULL_OP), coin_symbol(SYMB::GVC), coin_amount(0) {}
 
     CCoinStakeTx(const CUserID &txUidIn, const int32_t validHeightIn, const TokenSymbol &feeSymbol, const uint64_t feesIn,
                 const BalanceOpType stakeType, const TokenSymbol &coinSymbol, const uint64_t coinAmount)

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -832,7 +832,7 @@ static bool ProcessGenesisBlock(CBlock &block, CCacheWrapper &cw, CBlockIndex *p
             account.owner_pubkey = pubKey;
             account.regid        = regId;
 
-            account.OperateBalance(SYMB::WICC, BalanceOpType::ADD_FREE, pRewardTx->reward_fees);
+            account.OperateBalance(SYMB::GVC, BalanceOpType::ADD_FREE, pRewardTx->reward_fees);
 
             assert(cw.accountCache.SaveAccount(account));
         } else if (block.vptx[i]->nTxType == DELEGATE_VOTE_TX) {
@@ -879,8 +879,8 @@ static bool ProcessGenesisBlock(CBlock &block, CCacheWrapper &cw, CBlockIndex *p
                          return vote1.GetVotedBcoins() > vote2.GetVotedBcoins();
                      });
             }
-            assert(voterAcct.GetToken(SYMB::WICC).free_amount >= maxVotes);
-            voterAcct.OperateBalance(SYMB::WICC, BalanceOpType::VOTE, maxVotes);
+            assert(voterAcct.GetToken(SYMB::GVC).free_amount >= maxVotes);
+            voterAcct.OperateBalance(SYMB::GVC, BalanceOpType::VOTE, maxVotes);
             cw.accountCache.SaveAccount(voterAcct);
             assert(cw.delegateCache.SetCandidateVotes(pDelegateTx->txUid.get<CRegID>(),
                                                       candidateVotes));
@@ -1071,7 +1071,7 @@ bool ConnectBlock(CBlock &block, CCacheWrapper &cw, CBlockIndex *pIndex, CValida
 
     // Re-compute reward values and total fuel
     uint64_t totalFuel                 = 0;
-    map<TokenSymbol, uint64_t> rewards = {{SYMB::WICC, 0}, {SYMB::WUSD, 0}};  // Only allow WICC/WUSD as fees type.
+    map<TokenSymbol, uint64_t> rewards = {{SYMB::GVC, 0}, {SYMB::WUSD, 0}};  // Only allow GVC/WUSD as fees type.
 
     if (block.vptx.size() > 1) {
         assert(mapBlockIndex.count(cw.blockCache.GetBestBlockHash()));
@@ -1113,7 +1113,7 @@ bool ConnectBlock(CBlock &block, CCacheWrapper &cw, CBlockIndex *pIndex, CValida
             totalFuel += fuel;
 
             auto fees_symbol = std::get<0>(pBaseTx->GetFees());
-            assert(fees_symbol == SYMB::WICC || fees_symbol == SYMB::WUSD);  // Only allow WICC/WUSD as fees type.
+            assert(fees_symbol == SYMB::GVC || fees_symbol == SYMB::WUSD);  // Only allow GVC/WUSD as fees type.
             auto fees = std::get<1>(pBaseTx->GetFees());
             assert(fees >= fuel);
             rewards[fees_symbol] += (fees - fuel);
@@ -1139,7 +1139,7 @@ bool ConnectBlock(CBlock &block, CCacheWrapper &cw, CBlockIndex *pIndex, CValida
     // Verify reward values
     if (block.vptx[0]->nTxType == BLOCK_REWARD_TX) {
         auto pRewardTx = (CBlockRewardTx *)block.vptx[0].get();
-        if (pRewardTx->reward_fees != rewards.at(SYMB::WICC)) {
+        if (pRewardTx->reward_fees != rewards.at(SYMB::GVC)) {
             return state.DoS(100, ERRORMSG("ConnectBlock() : invalid coinbase reward amount"), REJECT_INVALID,
                              "bad-reward-amount");
         }

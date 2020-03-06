@@ -4,16 +4,16 @@
 
 1. Ubuntu 14.x/16.x/18.x/CentOS 7.x
 ```
-$ sudo curl https://raw.githubusercontent.com/WaykiChain/WaykiChain/master/distros/linuxshell/prepare_prerequisites.sh|bash
+$ sudo curl https://raw.githubusercontent.com/GreenVentures/GreenVenturesChain/master/distros/linuxshell/prepare_prerequisites.sh|bash
 ```
 
 ### Build steps
-1. Get the source code [WaykiChain](https://github.com/WaykiChain/WaykiChain)
+1. Get the source code [GreenVenturesChain](https://github.com/GreenVentures/GreenVenturesChain)
 2. Detailed steps
-> you will find the core executable under the directory `src/coind`.
+> you will find the core executable under the directory `src/coin`.
 
 ```code
-$ cd WaykiChain
+$ cd GreenVenturesChain
 $ sh ./distros/linuxshell/linux.sh
 $ sh ./autogen-coin-man.sh coin
 $ make

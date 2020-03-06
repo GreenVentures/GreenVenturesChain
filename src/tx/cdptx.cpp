@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -192,7 +192,7 @@ bool CCDPStakeTx::ExecuteTx(CTxExecuteContext &context) {
         return false;
     }
 
-    //1. pay miner fees (WICC)
+    //1. pay miner fees (GVC)
     if (!account.OperateBalance(fee_symbol, BalanceOpType::SUB_FREE, llFees))
         return state.DoS(100, ERRORMSG("CCDPStakeTx::ExecuteTx, deduct fees from regId=%s failed,",
                         txUid.ToString()), UPDATE_ACCOUNT_FAIL, "deduct-account-fee-failed");
@@ -478,7 +478,7 @@ bool CCDPRedeemTx::ExecuteTx(CTxExecuteContext &context) {
                          "global-cdp-lock-is-on");
     }
 
-    //1. pay miner fees (WICC)
+    //1. pay miner fees (GVC)
     if (!account.OperateBalance(fee_symbol, SUB_FREE, llFees)) {
         return state.DoS(100, ERRORMSG("CCDPRedeemTx::ExecuteTx, deduct fees from regId=%s failed",
                         txUid.ToString()), UPDATE_ACCOUNT_FAIL, "deduct-account-fee-failed");
@@ -587,7 +587,7 @@ bool CCDPRedeemTx::ExecuteTx(CTxExecuteContext &context) {
                         account.regid.ToString(), actualScoinsToRepay), UPDATE_ACCOUNT_FAIL, "bad-operate-account");
     }
     if (!account.OperateBalance(cdp.bcoin_symbol, BalanceOpType::UNPLEDGE, assetAmount)) {
-        return state.DoS(100, ERRORMSG("CCDPRedeemTx::ExecuteTx, update account(%s) ADD WICC(%lu) failed",
+        return state.DoS(100, ERRORMSG("CCDPRedeemTx::ExecuteTx, update account(%s) ADD GVC(%lu) failed",
                         account.regid.ToString(), assetAmount), UPDATE_ACCOUNT_FAIL, "bad-operate-account");
     }
     if (!cw.accountCache.SaveAccount(account)) {
@@ -698,8 +698,8 @@ bool CCDPRedeemTx::SellInterestForFcoins(const CTxCord &txCord, const CUserCDP &
   *   Liquidate Amount:     l * N       = lN
   *   Penalty Fees:         l * N * 13% = 0.13lN
   * Liquidator received:    Bcoins only
-  *   Bcoins:               1.13lN ~ 1.16lN (WICC)
-  *   Net Profit:           0 ~ 0.03lN (WICC)
+  *   Bcoins:               1.13lN ~ 1.16lN (GVC)
+  *   Net Profit:           0 ~ 0.03lN (GVC)
   *
   * CDP Owner returned
   *   Bcoins:               lM - 1.16lN = l(M - 1.16N)
@@ -756,7 +756,7 @@ bool CCDPLiquidateTx::ExecuteTx(CTxExecuteContext &context) {
                          "global-cdp-lock-is-on");
     }
 
-    //1. pay miner fees (WICC)
+    //1. pay miner fees (GVC)
     if (!account.OperateBalance(fee_symbol, SUB_FREE, llFees)) {
         return state.DoS(100, ERRORMSG("CCDPLiquidateTx::ExecuteTx, deduct fees from regId=%s failed",
                         txUid.ToString()), UPDATE_ACCOUNT_FAIL, "deduct-account-fee-failed");

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -122,7 +122,7 @@ uint8_t G_CONFIG_TABLE::GetTotalDelegateNum() const { return TotalDelegateNum; }
 uint32_t G_CONFIG_TABLE::GetMaxVoteCandidateNum() const { return MaxVoteCandidateNum; }
 
 // BaseCoin name
-string G_CONFIG_TABLE::COIN_NAME = "WaykiChain";
+string G_CONFIG_TABLE::COIN_NAME = "GreenVenturesChain";
 
 vector<string> G_CONFIG_TABLE::initPubKey[3] = {
     { // Public Key for mainnet

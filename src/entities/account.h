@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,9 +82,9 @@ public:
 public:
     CAccountToken() : free_amount(0), frozen_amount(0), staked_amount(0), voted_amount(0), pledged_amount(0) { }
 
-    CAccountToken(uint64_t& freeAmount, uint64_t& frozenAmount, uint64_t& stakedAmount, 
+    CAccountToken(uint64_t& freeAmount, uint64_t& frozenAmount, uint64_t& stakedAmount,
                 uint64_t& votedAmount, uint64_t& pledgedAmount )
-        : free_amount(freeAmount), frozen_amount(frozenAmount), staked_amount(stakedAmount), 
+        : free_amount(freeAmount), frozen_amount(frozenAmount), staked_amount(stakedAmount),
             voted_amount(votedAmount), pledged_amount(pledgedAmount) {}
 
     CAccountToken& operator=(const CAccountToken& other) {
@@ -125,7 +125,7 @@ public:
     CPubKey miner_pubkey;           //!< miner saving account public key
 
     AccountTokenMap tokens;         //!< In total, 3 types of coins/tokens:
-                                    //!<    1) system-issued coins: WICC, WGRT
+                                    //!<    1) system-issued coins: GVC, WGRT
                                     //!<    2) miner-issued stablecoins WUSD|WCNY|...
                                     //!<    3) user-issued tokens (WRC20 compliant)
 

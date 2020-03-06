@@ -39,7 +39,7 @@ if [ $# -lt 1 ]; then
         exit 1
 fi
 
-BITCOIND=${1}/bitcoind
+BITCOIND=${1}/bitcoin
 CLI=${1}/bitcoin-cli
 
 DIR="${BASH_SOURCE%/*}"

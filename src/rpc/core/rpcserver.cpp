@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -284,7 +284,7 @@ static bool InitRPCAuthentication() {
     if (SysCfg().RequireRPCPassword() && (rpcuser == "" || rpcuser == rpcpassword)) {
         unsigned char rand_pwd[32];
         RAND_bytes(rand_pwd, 32);
-        string strWhatAmI = "To use coind";
+        string strWhatAmI = "To use coin";
 
         if (SysCfg().IsArgCount("-rpcserver")) {
             strWhatAmI = strprintf(_("To use the %s option"), "\"-rpcserver\"");
@@ -296,7 +296,7 @@ static bool InitRPCAuthentication() {
         LogPrint(BCLog::ERROR, "%s, you must set a rpcpassword in the configuration file:\n"
                   "%s\n"
                   "It is recommended you use the following random password:\n"
-                  "rpcuser=wiccrpc\n"
+                  "rpcuser=gvcrpc\n"
                   "rpcpassword=%s\n"
                   "(you do not need to remember this password)\n"
                   "The username and password MUST NOT be the same.\n"
@@ -487,7 +487,7 @@ json_spirit::Value CRPCTable::execute(const string& strMethod,
 }
 
 string HelpExampleCli(string methodname, string args) {
-    return "> ./coind " + methodname + " " + args + "\n";
+    return "> ./coin " + methodname + " " + args + "\n";
 }
 
 string HelpExampleRpc(string methodname, string args) {

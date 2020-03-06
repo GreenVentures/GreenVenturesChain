@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,7 +46,7 @@ bool GetTxMinFee(const TxType nTxType, int height, const TokenSymbol &symbol, ui
     const auto &iter = kTxFeeTable.find(nTxType);
     if (iter != kTxFeeTable.end()) {
         FeatureForkVersionEnum version = GetFeatureForkVersion(height);
-        if (symbol == SYMB::WICC) {
+        if (symbol == SYMB::GVC) {
             if (version >= MAJOR_VER_R2) {
                 feeOut = std::get<2>(iter->second);
                 return true;
@@ -123,7 +123,7 @@ Object CBaseTx::ToJson(const CAccountDBCache &accountCache) const {
 bool CBaseTx::CheckTxFeeSufficient(const TokenSymbol &feeSymbol, const uint64_t llFees, const int32_t height) const {
     uint64_t minFee;
     if (!GetTxMinFee(nTxType, height, feeSymbol, minFee)) {
-        assert(false && "Get tx min fee for WICC or WUSD");
+        assert(false && "Get tx min fee for GVC or WUSD");
         return false;
     }
     return llFees >= minFee;

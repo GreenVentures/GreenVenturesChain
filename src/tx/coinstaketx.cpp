@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,7 +20,7 @@ bool CCoinStakeTx::CheckTx(CTxExecuteContext &context) {
     }
 
     // TODO: use issued asset registry in future to replace below hard-coding
-    if (coin_symbol != SYMB::WICC && coin_symbol != SYMB::WUSD && coin_symbol != SYMB::WGRT) {
+    if (coin_symbol != SYMB::GVC && coin_symbol != SYMB::WUSD && coin_symbol != SYMB::WGRT) {
         return state.DoS(100, ERRORMSG("CCoinStakeTx::CheckTx, invalid coin_symbol"), REJECT_INVALID,
                          "bad-coin-symbol");
     }

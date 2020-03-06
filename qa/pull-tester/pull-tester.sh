@@ -12,7 +12,7 @@ if [ $# -lt 1 ]; then
 fi
 
 killall -q bitcoin-cli
-killall -q bitcoind
+killall -q bitcoin
 
 cd $1
 shift

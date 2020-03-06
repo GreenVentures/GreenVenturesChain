@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -40,13 +40,13 @@ namespace dex {
 
         return baseTx.CheckFee(context, [&](CTxExecuteContext &context, uint64_t minFee) -> bool {
             if (GetFeatureForkVersion(context.height) > MAJOR_VER_R3 && baseTx.txUid.is<CPubKey>()) {
-                auto token = txAccount.GetToken(SYMB::WICC);
+                auto token = txAccount.GetToken(SYMB::GVC);
 
                 if (token.staked_amount > 0) {
                     minFee = std::max(std::min(COIN * COIN / token.staked_amount, minFee), (uint64_t)1);
                 }
                 if (baseTx.llFees < minFee){
-                    string err = strprintf("The given fee is too small: %llu < %llu sawi when wicc staked_amount=%llu",
+                    string err = strprintf("The given fee is too small: %llu < %llu sawi when gvc staked_amount=%llu",
                         baseTx.llFees, minFee, token.staked_amount);
                     return context.pState->DoS(100, ERRORMSG("%s, tx=%s, height=%d, fee_symbol=%s",
                         err, baseTx.GetTxTypeName(), context.height, baseTx.fee_symbol), REJECT_INVALID, err);

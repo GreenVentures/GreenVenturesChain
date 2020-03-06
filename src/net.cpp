@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -285,9 +285,9 @@ bool GetMyPublicIP(CNetAddr& ipRet) {
     ipHost = SysCfg().GetArg("-ipserver", "");
     if (ipHost == "") {
         if (SysCfg().NetworkID() == MAIN_NET)
-            ipHost = "wiccip.me";
+            ipHost = "gvcip.me";
         else if (SysCfg().NetworkID() == TEST_NET)
-            ipHost = "wiccip.com";
+            ipHost = "gvcip.com";
         else
             return true; // no need for RegTest network
     }

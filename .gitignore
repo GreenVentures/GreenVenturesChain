@@ -24,7 +24,7 @@ configure
 Makefile
 Makefile.in
 qa/pull-tester/build-tests.sh
-qa/pull-tester/run-bitcoind-for-test.sh
+qa/pull-tester/run-bitcoin-for-test.sh
 share/qt/Info.plist
 share/setup.nsi
 src/config/build.h
@@ -32,7 +32,7 @@ src/config/coin-config.h
 src/config/coin-config.h.in
 src/config/coin-config.h.in~
 src/config/stamp-h1
-src/coind
+src/coin
 src/coinlua
 src/Makefile.in
 src/obj

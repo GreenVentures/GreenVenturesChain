@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +41,7 @@ enum TxType: uint8_t {
     UCOIN_BLOCK_REWARD_TX       = 13,   //!< Universal Coin Miner Block Reward Tx
     UCONTRACT_DEPLOY_TX         = 14,   //!< universal VM contract deployment
     UCONTRACT_INVOKE_TX         = 15,   //!< universal VM contract invocation
-    PRICE_FEED_TX               = 16,   //!< Price Feed Tx: WICC/USD | WGRT/USD | WUSD/USD
+    PRICE_FEED_TX               = 16,   //!< Price Feed Tx: GVC/USD | WGRT/USD | WUSD/USD
     PRICE_MEDIAN_TX             = 17,   //!< Price Median Value on each block Tx
     UTXO_TRANSFER_TX            = 18,   //!< UTXO & HTLC Coin
     UTXO_PASSWORD_PROOF_TX      = 19,   //!< UTXO password proof
@@ -79,7 +79,7 @@ struct TxTypeHash {
 };
 
 static const unordered_set<string> kFeeSymbolSet = {
-    SYMB::WICC,
+    SYMB::GVC,
     SYMB::WUSD
 };
 
@@ -97,14 +97,14 @@ inline string GetFeeSymbolSetStr() {
 
 /**
  * TxTypeKey -> {   TxTypeName,
- *                  InterimPeriodTxFees(WICC), EffectivePeriodTxFees(WICC),
+ *                  InterimPeriodTxFees(GVC), EffectivePeriodTxFees(GVC),
  *                  InterimPeriodTxFees(WUSD), EffectivePeriodTxFees(WUSD)
  *              }
  *
  * Fees are boosted by COIN=10^8
  */
 static const unordered_map<TxType, std::tuple<string, uint64_t, uint64_t, uint64_t, uint64_t, bool>, TxTypeHash> kTxFeeTable = {
-/* tx type                                   tx type name               V1:WICC     V2:WICC    V1:WUSD     V2:WUSD     can_update      */
+/* tx type                                   tx type name               V1:GVC     V2:GVC    V1:WUSD     V2:WUSD     can_update      */
 { NULL_TX,                  std::make_tuple("NULL_TX",                  0,          0,          0,          0,           false ) },
 
 { BLOCK_REWARD_TX,          std::make_tuple("BLOCK_REWARD_TX",          0,          0,          0,          0,           false) }, //deprecated
@@ -118,8 +118,8 @@ static const unordered_map<TxType, std::tuple<string, uint64_t, uint64_t, uint64
 { UCOIN_TRANSFER_MTX,       std::make_tuple("UCOIN_TRANSFER_MTX",       0,          0.1*COIN,   0.1*COIN,   0.1*COIN    ,true) },
 { UCOIN_STAKE_TX,           std::make_tuple("UCOIN_STAKE_TX",           0,          0.01*COIN,  0.01*COIN,  0.01*COIN   ,true) },
 
-{ ASSET_ISSUE_TX,           std::make_tuple("ASSET_ISSUE_TX",           0,          0.01*COIN,  0.01*COIN,  0.01*COIN   ,true) }, //plus 550 WICC
-{ ASSET_UPDATE_TX,          std::make_tuple("ASSET_UPDATE_TX",          0,          0.01*COIN,  0.01*COIN,  0.01*COIN   ,true) }, //plus 110 WICC
+{ ASSET_ISSUE_TX,           std::make_tuple("ASSET_ISSUE_TX",           0,          0.01*COIN,  0.01*COIN,  0.01*COIN   ,true) }, //plus 550 GVC
+{ ASSET_UPDATE_TX,          std::make_tuple("ASSET_UPDATE_TX",          0,          0.01*COIN,  0.01*COIN,  0.01*COIN   ,true) }, //plus 110 GVC
 { UCOIN_TRANSFER_TX,        std::make_tuple("UCOIN_TRANSFER_TX",        0,          0.001*COIN, 0.001*COIN, 0.001*COIN  ,true) },
 { UTXO_TRANSFER_TX,         std::make_tuple("UTXO_TRANSFER_TX",         0,          0.001*COIN, 0.001*COIN, 0.001*COIN  ,true) },
 { UTXO_PASSWORD_PROOF_TX,   std::make_tuple("UTXO_PASSWORD_PROOF_TX",   0,          0.001*COIN, 0.001*COIN, 0.001*COIN  ,true) },

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@ using namespace std;
 static const uint32_t NAME_SIZE_MAX = 32;
 static const uint32_t MEMO_SIZE_MAX = 256;
 
-static const uint8_t WICC_PRECISION = 8;
+static const uint8_t GVC_PRECISION = 8;
 
 #define DEFINE_STRUCT_FIELD_ENUM(field_name, type_name, type) __enum_##field_name
 #define DEFINE_STRUCT_TYPE(field_name, type_name, type) type

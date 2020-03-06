@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -55,7 +55,7 @@ bool CAccountRegisterTx::ExecuteTx(CTxExecuteContext &context) {
     account.regid        = regId;
     account.owner_pubkey = txUid.get<CPubKey>();
 
-    if (!account.OperateBalance(SYMB::WICC, BalanceOpType::SUB_FREE, llFees)) {
+    if (!account.OperateBalance(SYMB::GVC, BalanceOpType::SUB_FREE, llFees)) {
         return state.DoS(100, ERRORMSG("CAccountRegisterTx::ExecuteTx, insufficient funds in account, keyid=%s",
                         keyId.ToString()), UPDATE_ACCOUNT_FAIL, "insufficent-funds");
     }

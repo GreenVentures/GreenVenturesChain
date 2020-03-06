@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The WaykiChain Core Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php
 
@@ -41,7 +41,7 @@ namespace RPC_PARAM {
 
     void CheckTokenAmount(const TokenSymbol &symbol, const uint64_t amount);
 
-    ComboMoney GetComboMoney(const Value &jsonValue, const TokenSymbol &defaultSymbol = SYMB::WICC);
+    ComboMoney GetComboMoney(const Value &jsonValue, const TokenSymbol &defaultSymbol = SYMB::GVC);
 
     ComboMoney GetFee(const Array& params, const size_t index, const TxType txType);
     uint64_t GetWiccFee(const Array& params, const size_t index, const TxType txType);
@@ -105,7 +105,7 @@ bool is_decimal(const string& s );
 bool ParseRpcInputAccountId(const string &comboAccountIdStr, tuple<AccountIDType, string> &comboAccountId);
 
 // [symbol]:amount:[unit]
-// [WICC(default)|WUSD|WGRT|...]:amount:[sawi(default)]
-bool ParseRpcInputMoney(const string &comboMoneyStr, ComboMoney &comboMoney, const TokenSymbol defaultSymbol = SYMB::WICC);
+// [GVC(default)|WUSD|WGRT|...]:amount:[sawi(default)]
+bool ParseRpcInputMoney(const string &comboMoneyStr, ComboMoney &comboMoney, const TokenSymbol defaultSymbol = SYMB::GVC);
 
 #endif  // RPC_CORE_COMMONS_H

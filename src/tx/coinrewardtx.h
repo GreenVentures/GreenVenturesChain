@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,11 +11,11 @@
 
 class CCoinRewardTx : public CBaseTx {
 public:
-    TokenSymbol coin_symbol;  // default: WICC
+    TokenSymbol coin_symbol;  // default: GVC
     uint64_t coin_amount;
 
 public:
-    CCoinRewardTx() : CBaseTx(UCOIN_REWARD_TX), coin_symbol(SYMB::WICC), coin_amount(0) {}
+    CCoinRewardTx() : CBaseTx(UCOIN_REWARD_TX), coin_symbol(SYMB::GVC), coin_amount(0) {}
 
     CCoinRewardTx(const CUserID &txUidIn, const int32_t validHeightIn,
                   const TokenSymbol &coinSymbol, const uint64_t coinAmount)

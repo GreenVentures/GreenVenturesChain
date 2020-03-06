@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,7 +21,7 @@ json_spirit::Array RPCConvertValues(const std::string &strMethod, const std::vec
  * The mainProgram argument is used to determine whether to show this message as main program
  * (and include some common options) or as sub-header of another help message.
  *
- * @note the argument can be removed once coin-cli functionality is removed from coind
+ * @note the argument can be removed once coin-cli functionality is removed from coin
  */
 std::string HelpMessageCli(bool mainProgram);
 

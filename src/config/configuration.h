@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -230,7 +230,7 @@ inline bool CheckBaseCoinRange(const int64_t amount) { return (amount >= 0 && am
 inline bool CheckFundCoinRange(const int64_t amount) { return (amount >= 0 && amount <= FUNDCOIN_MAX_MONEY); }
 inline bool CheckStableCoinRange(const int64_t amount) { return (amount >= 0 && amount <= STABLECOIN_MAX_MONEY); }
 inline bool CheckCoinRange(const TokenSymbol &symbol, const int64_t amount) {
-    if (symbol == SYMB::WICC) {
+    if (symbol == SYMB::GVC) {
         return CheckBaseCoinRange(amount);
     } else if (symbol == SYMB::WGRT) {
         return CheckFundCoinRange(amount);

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -142,7 +142,7 @@ CWasmContractTx::get_accounts_from_signatures(CCacheWrapper& database, std::vect
 
         CHAIN_ASSERT( database.accountCache.GetAccount(nick_name(s.account), account),
                       wasm_chain::account_access_exception, "%s",
-                      "can not get account from nickid '%s'", wasm::name(s.account).to_string())        
+                      "can not get account from nickid '%s'", wasm::name(s.account).to_string())
         CHAIN_ASSERT( account.owner_pubkey.Verify(signature_hash, s.signature),
                       wasm_chain::unsatisfied_authorization,
                       "can not verify signature '%s bye public key '%s' and hash '%s' ",
@@ -166,12 +166,12 @@ bool CWasmContractTx::CheckTx(CTxExecuteContext& context) {
     auto &check_tx_to_return = *context.pState;
 
     try {
-        CHAIN_ASSERT( signatures.size() > 0 && signatures.size() <= max_signatures_size, 
-                      wasm_chain::sig_variable_size_limit_exception, 
+        CHAIN_ASSERT( signatures.size() > 0 && signatures.size() <= max_signatures_size,
+                      wasm_chain::sig_variable_size_limit_exception,
                       "signatures size must be <= %s", max_signatures_size)
 
-        CHAIN_ASSERT( inline_transactions.size() > 0 && inline_transactions.size() <= max_inline_transactions_size, 
-                      wasm_chain::inline_transaction_size_exceeds_exception, 
+        CHAIN_ASSERT( inline_transactions.size() > 0 && inline_transactions.size() <= max_inline_transactions_size,
+                      wasm_chain::inline_transaction_size_exceeds_exception,
                       "inline_transactions size must be <= %s", max_inline_transactions_size)
 
         //IMPLEMENT_CHECK_TX_REGID(txUid.type());
@@ -220,7 +220,7 @@ static uint64_t get_fuel_fee_limit(CBaseTx& tx, CTxExecuteContext& context) {
 
     uint64_t fee_for_miner = min_fee * CONTRACT_CALL_RESERVED_FEES_RATIO  / 100;
     uint64_t fee_for_gas   = tx.llFees - fee_for_miner;
-    uint64_t fuel_limit    = std::min<uint64_t>((fee_for_gas / fuel_rate) *  100 , MAX_BLOCK_RUN_STEP);//1.2 WICC
+    uint64_t fuel_limit    = std::min<uint64_t>((fee_for_gas / fuel_rate) *  100 , MAX_BLOCK_RUN_STEP);//1.2 GVC
     CHAIN_ASSERT(fuel_limit > 0, wasm_chain::fee_exhausted_exception, "fuel limit equal 0")
 
     // WASM_TRACE("fuel_rate:%ld",fuel_rate )
@@ -294,7 +294,7 @@ bool CWasmContractTx::ExecuteTx(CTxExecuteContext &context) {
                       wasm_chain::account_access_exception,
                       "payer does not exist, payer uid = '%s'",
                       txUid.ToString())
-        sub_balance(payer, wasm::asset(llFees, wasm::symbol(SYMB::WICC, 8)), database.accountCache);
+        sub_balance(payer, wasm::asset(llFees, wasm::symbol(SYMB::GVC, 8)), database.accountCache);
 
         recipients_size        = 0;
         pseudo_start           = system_clock::now();//pseudo start for reduce code loading duration
@@ -317,25 +317,25 @@ bool CWasmContractTx::ExecuteTx(CTxExecuteContext &context) {
         CHAIN_ASSERT( trx_trace.elapsed.count() < max_transaction_duration.count() * 1000,
                       wasm_chain::tx_cpu_usage_exceeded,
                       "Tx execution time must be in '%d' microseconds, but get '%d' microseconds",
-                      max_transaction_duration * 1000, trx_trace.elapsed.count())                   
+                      max_transaction_duration * 1000, trx_trace.elapsed.count())
 
         //check storage usage with the limited fuel
         auto fuel_fee_to_miner = get_fuel_fee_to_miner(*this, context) ;
         auto fuel_fee          = get_fuel_fee_limit(*this, context);
         run_cost               = run_cost + recipients_size * notice_fuel_fee_per_recipient;
 
-        CHAIN_ASSERT( fuel_fee > run_cost, wasm_chain::fee_exhausted_exception, 
-                      "fuel fee '%ld' is not enough to charge cost '%ld', fuel_rate:%ld", 
-                      (fuel_fee == MAX_BLOCK_RUN_STEP)?fuel_fee:fuel_fee + fuel_fee_to_miner, 
+        CHAIN_ASSERT( fuel_fee > run_cost, wasm_chain::fee_exhausted_exception,
+                      "fuel fee '%ld' is not enough to charge cost '%ld', fuel_rate:%ld",
+                      (fuel_fee == MAX_BLOCK_RUN_STEP)?fuel_fee:fuel_fee + fuel_fee_to_miner,
                       (fuel_fee == MAX_BLOCK_RUN_STEP)?run_cost:run_cost + fuel_fee_to_miner,
                       context.fuel_rate);
 
         trx_trace.fuel_rate = context.fuel_rate;
         trx_trace.run_cost  = run_cost;
 
-        // WASM_TRACE("fuel_fee: '%ld' ,run_cost: '%ld'", 
-        //               (fuel_fee == MAX_BLOCK_RUN_STEP)?fuel_fee: fuel_fee + fuel_fee_to_miner, 
-        //               (fuel_fee == MAX_BLOCK_RUN_STEP)?run_cost: run_cost + fuel_fee_to_miner);    
+        // WASM_TRACE("fuel_fee: '%ld' ,run_cost: '%ld'",
+        //               (fuel_fee == MAX_BLOCK_RUN_STEP)?fuel_fee: fuel_fee + fuel_fee_to_miner,
+        //               (fuel_fee == MAX_BLOCK_RUN_STEP)?run_cost: run_cost + fuel_fee_to_miner);
 
         //save trx trace
         std::vector<char> trace_bytes = wasm::pack<transaction_trace>(trx_trace);
@@ -364,7 +364,7 @@ bool CWasmContractTx::ExecuteTx(CTxExecuteContext &context) {
 
         //execute_tx_to_return.SetReturn(GetHash().ToString());
         execute_tx_to_return.SetReturn(string_return);
-    } catch (wasm_chain::exception &e) { 
+    } catch (wasm_chain::exception &e) {
 
         string trx_current_str("inline_tx:");
         if( trx_current_for_exception != nullptr ){

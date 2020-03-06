@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@
 using namespace std;
 
 namespace SYMB {
-    static const string WICC        = "WICC";
+    static const string GVC        = "GVC";
     static const string WGRT        = "WGRT";
     static const string WUSD        = "WUSD";
     static const string WCNY        = "WCNY";
@@ -86,8 +86,8 @@ static const unordered_map<string, unsigned int , CoinUnitTypeHash> CoinUnitPrec
     {"mwi",  14    },  // 1000,000
 };
 
-static const uint64_t COIN = 100000000;  //10^8 = 1 WICC
-static const uint64_t CENT = 1000000;    //10^6 = 0.01 WICC
+static const uint64_t COIN = 100000000;  //10^8 = 1 GVC
+static const uint64_t CENT = 1000000;    //10^6 = 0.01 GVC
 
 /** the max token symbol len */
 static const uint32_t MAX_TOKEN_SYMBOL_LEN = 7;

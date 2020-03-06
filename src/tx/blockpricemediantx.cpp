@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -99,7 +99,7 @@ bool CBlockPriceMedianTx::ExecuteTx(CTxExecuteContext &context) {
     }
 
     // TODO: support multi asset/scoin cdp
-    CCdpForceLiquidator forceLiquidator(*this, context, receipts, fcoinGenesisAccount, SYMB::WICC, SYMB::WUSD);
+    CCdpForceLiquidator forceLiquidator(*this, context, receipts, fcoinGenesisAccount, SYMB::GVC, SYMB::WUSD);
     if (!forceLiquidator.Execute())
         return false;
 
@@ -223,7 +223,7 @@ bool CCdpForceLiquidator::Execute() {
     }
 
     NET_TYPE netType = SysCfg().NetworkID();
-    if (netType == TEST_NET && context.height < 1800000  && assetSymbol == SYMB::WICC && scoinSymbol == SYMB::WUSD) {
+    if (netType == TEST_NET && context.height < 1800000  && assetSymbol == SYMB::GVC && scoinSymbol == SYMB::WUSD) {
         // soft fork to compat old data of testnet
         // TODO: remove me if reset testnet.
         return ForceLiquidateCDPCompat(bcoinMedianPrice, fcoinMedianPrice, cdpMap);
@@ -409,19 +409,19 @@ bool CCdpForceLiquidator::ForceLiquidateCDPCompat(uint64_t bcoinMedianPrice, uin
             continue;
         }
 
-        // a) sell WICC for WUSD to return to risk reserve pool
+        // a) sell GVC for WUSD to return to risk reserve pool
         // send bcoin from cdp to fcoin genesis account
-        if (!fcoinGenesisAccount.OperateBalance(SYMB::WICC, BalanceOpType::ADD_FREE, cdp.total_staked_bcoins)) {
+        if (!fcoinGenesisAccount.OperateBalance(SYMB::GVC, BalanceOpType::ADD_FREE, cdp.total_staked_bcoins)) {
             return state.DoS(100, ERRORMSG("%s(), operate balance failed", __FUNCTION__),
                                 UPDATE_ACCOUNT_FAIL, "operate-fcoin-genesis-account-failed");
         }
         // should freeze user's asset for selling
-        if (!fcoinGenesisAccount.OperateBalance(SYMB::WICC, BalanceOpType::FREEZE, cdp.total_staked_bcoins)) {
+        if (!fcoinGenesisAccount.OperateBalance(SYMB::GVC, BalanceOpType::FREEZE, cdp.total_staked_bcoins)) {
             return state.DoS(100, ERRORMSG("%s(), account has insufficient funds", __FUNCTION__),
                                 UPDATE_ACCOUNT_FAIL, "operate-fcoin-genesis-account-failed");
         }
         auto pBcoinSellMarketOrder = dex::CSysOrder::CreateSellMarketOrder(
-            CTxCord(context.height, context.index), SYMB::WUSD, SYMB::WICC, cdp.total_staked_bcoins);
+            CTxCord(context.height, context.index), SYMB::WUSD, SYMB::GVC, cdp.total_staked_bcoins);
         uint256 bcoinSellMarketOrderId = GenOrderIdCompat(txid, orderIndex++);
         if (!cw.dexCache.CreateActiveOrder(bcoinSellMarketOrderId, *pBcoinSellMarketOrder)) {
             return state.DoS(100, ERRORMSG("%s(), create sys order for SellBcoinForScoin (%s) failed",
@@ -498,7 +498,7 @@ bool CCdpForceLiquidator::ForceLiquidateCDPCompat(uint64_t bcoinMedianPrice, uin
 
     receipts.emplace_back(fcoinGenesisAccount.regid, nullId, SYMB::WUSD, totalCloseoutScoins,
                             ReceiptCode::CDP_TOTAL_CLOSEOUT_SCOIN_FROM_RESERVE);
-    receipts.emplace_back(nullId, fcoinGenesisAccount.regid, SYMB::WICC, totalSelloutBcoins,
+    receipts.emplace_back(nullId, fcoinGenesisAccount.regid, SYMB::GVC, totalSelloutBcoins,
                             ReceiptCode::CDP_TOTAL_ASSET_TO_RESERVE);
     receipts.emplace_back(nullId, fcoinGenesisAccount.regid, SYMB::WGRT, totalInflateFcoins,
                             ReceiptCode::CDP_TOTAL_INFLATE_FCOIN_TO_RESERVE);

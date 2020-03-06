@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -126,7 +126,7 @@ Value getrawmempool(const Array& params, bool fHelp)
             "\nResult: (for verbose = true):\n"
             "{                           (json object)\n"
             "  \"txid\" : {       (json object)\n"
-            "    \"fee\" : n,              (numeric) transaction fee in WICC coins\n"
+            "    \"fee\" : n,              (numeric) transaction fee in GVC coins\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
             "    \"priority\" : n,         (numeric) priority\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 "
@@ -409,7 +409,7 @@ void static CommonTxGenerator(const int64_t period, const int64_t batchSize) {
     CRegID desRegId("0-1");
     static uint64_t llValue = 10000;  // use static variable to keep autoincrement
     uint64_t llFees         = 0;
-    GetTxMinFee(BCOIN_TRANSFER_TX, chainActive.Height(), SYMB::WICC, llFees);
+    GetTxMinFee(BCOIN_TRANSFER_TX, chainActive.Height(), SYMB::GVC, llFees);
 
     while (true) {
         // add interruption point
@@ -546,7 +546,7 @@ void static ContractTxGenerator(const string& regid, const int64_t period, const
     CRegID appUid(regid);
     static uint64_t llValue = 10000;  // use static variable to keep autoincrement
     uint64_t llFees         = 0;
-    GetTxMinFee(LCONTRACT_INVOKE_TX, chainActive.Height(), SYMB::WICC, llFees);
+    GetTxMinFee(LCONTRACT_INVOKE_TX, chainActive.Height(), SYMB::GVC, llFees);
 
     // hex(whmD4M8Q8qbEx6R5gULbcb5ZkedbcRDGY1) =
     // 77686d44344d3851387162457836523567554c626362355a6b656462635244475931

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -88,9 +88,9 @@ Value submitparamgovernproposal(const Array& params, bool fHelp){
                 "3.\"param_value\":      (numberic,   required) the param value that will be updated to \n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitparamgovernproposal", "0-1 ASSET_ISSUE_FEE  10000 WICC:1:WI")
+                + HelpExampleCli("submitparamgovernproposal", "0-1 ASSET_ISSUE_FEE  10000 GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitparamgovernproposal", "0-1 ASSET_ISSUE_FEE  10000 WICC:1:WI")
+                + HelpExampleRpc("submitparamgovernproposal", "0-1 ASSET_ISSUE_FEE  10000 GVC:1:WI")
 
                 );
 
@@ -146,9 +146,9 @@ Value submitcdpparamgovernproposal(const Array& params, bool fHelp){
                 "5.\"scoin_symbol\":     (string,     required) the stable coin symbol\n"
                 "6.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitcdpparamgovernproposal", "0-1 CDP_INTEREST_PARAM_A  10000 WICC WUSD WICC:1:WI")
+                + HelpExampleCli("submitcdpparamgovernproposal", "0-1 CDP_INTEREST_PARAM_A  10000 GVC WUSD GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitcdpparamgovernproposal", "0-1 CDP_INTEREST_PARAM_A  10000 WICC WUSD WICC:1:WI")
+                + HelpExampleRpc("submitcdpparamgovernproposal", "0-1 CDP_INTEREST_PARAM_A  10000 GVC WUSD GVC:1:WI")
 
         );
 
@@ -206,9 +206,9 @@ Value submitgovernorupdateproposal(const Array& params , bool fHelp) {
                 "                         2 stand for remove\n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitgovernorupdateproposal", "0-1 100-2 1  WICC:1:WI")
+                + HelpExampleCli("submitgovernorupdateproposal", "0-1 100-2 1  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitgovernorupdateproposal", "0-1 100-2 1  WICC:1:WI")
+                + HelpExampleRpc("submitgovernorupdateproposal", "0-1 100-2 1  GVC:1:WI")
 
         );
 
@@ -254,9 +254,9 @@ Value submitdexquotecoinproposal(const Array& params, bool fHelp) {
                 "                         2 stand for remove\n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitdexquotecoinproposal", "0-1 WUSD 1  WICC:1:WI")
+                + HelpExampleCli("submitdexquotecoinproposal", "0-1 WUSD 1  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitdexquotecoinproposal", "0-1 WUSD 1  WICC:1:WI")
+                + HelpExampleRpc("submitdexquotecoinproposal", "0-1 WUSD 1  GVC:1:WI")
 
                 );
     }
@@ -300,9 +300,9 @@ Value submitfeedcoinpairproposal(const Array& params, bool fHelp) {
                 "                         2 stand for remove\n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitfeedcoinpairproposal", "0-1 WICC WUSD 1  WICC:1:WI")
+                + HelpExampleCli("submitfeedcoinpairproposal", "0-1 GVC WUSD 1  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitfeedcoinpairproposal", "0-1 WICC WUSD 1  WICC:1:WI")
+                + HelpExampleRpc("submitfeedcoinpairproposal", "0-1 GVC WUSD 1  GVC:1:WI")
 
         );
     }
@@ -347,9 +347,9 @@ Value submitdexswitchproposal(const Array& params, bool fHelp) {
                 "                          2 stand for disable\n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitdexswitchproposal", "0-1 1 1  WICC:1:WI")
+                + HelpExampleCli("submitdexswitchproposal", "0-1 1 1  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitdexswitchproposal", "0-1 1 1  WICC:1:WI")
+                + HelpExampleRpc("submitdexswitchproposal", "0-1 1 1  GVC:1:WI")
 
         );
 
@@ -388,9 +388,9 @@ Value submitproposalapprovaltx(const Array& params, bool fHelp){
                 "2.\"proposalid\":       (numberic,   required) the dexoperator's id\n"
                 "3.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitproposalapprovaltx", "0-1 1 1  WICC:1:WI")
+                + HelpExampleCli("submitproposalapprovaltx", "0-1 1 1  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitproposalapprovaltx", "0-1 1 1  WICC:1:WI")
+                + HelpExampleRpc("submitproposalapprovaltx", "0-1 1 1  GVC:1:WI")
 
         );
     }
@@ -425,9 +425,9 @@ Value submitbpcountupdateproposal(const Array& params,bool fHelp) {
                 "3.\"effective_height\":    (numberic,   required) the height of the proposal launch \n"
                 "4.\"fee\":                 (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitbpcountupdateproposal", "0-1 21 45002020202  WICC:1:WI")
+                + HelpExampleCli("submitbpcountupdateproposal", "0-1 21 45002020202  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitbpcountupdateproposal", "0-1 4332222233223  WICC:1:WI")
+                + HelpExampleRpc("submitbpcountupdateproposal", "0-1 4332222233223  GVC:1:WI")
 
         );
 
@@ -469,12 +469,12 @@ Value submitminerfeeproposal(const Array& params, bool fHelp) {
                 "\nArguments:\n"
                 "1.\"addr\":             (string,     required) the tx submitor's address\n"
                 "2.\"tx_type\":          (numberic,   required) the tx type you can get the list by command \"listmintxfees\" \n"
-                "3.\"fee_info\":         (combomoney, required) the miner fee symbol,amount,unit, example:WICC:10000:SAWI \n"
+                "3.\"fee_info\":         (combomoney, required) the miner fee symbol,amount,unit, example:GVC:10000:SAWI \n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitminerfeeproposal", "0-1 1 WICC:1:WI  WICC:1:WI")
+                + HelpExampleCli("submitminerfeeproposal", "0-1 1 GVC:1:WI  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitminerfeeproposal", "0-1 1 WICC:1:WI  WICC:1:WI")
+                + HelpExampleRpc("submitminerfeeproposal", "0-1 1 GVC:1:WI  GVC:1:WI")
 
         );
 
@@ -483,7 +483,7 @@ Value submitminerfeeproposal(const Array& params, bool fHelp) {
     EnsureWalletIsUnlocked();
     const CUserID& txUid = RPC_PARAM::GetUserId(params[0], true);
     uint8_t txType = params[1].get_int();
-    ComboMoney feeInfo = RPC_PARAM::GetComboMoney(params[2],SYMB::WICC);
+    ComboMoney feeInfo = RPC_PARAM::GetComboMoney(params[2],SYMB::GVC);
     ComboMoney fee          = RPC_PARAM::GetFee(params, 3, PROPOSAL_REQUEST_TX);
     int32_t validHeight  = chainActive.Height();
     CAccount account = RPC_PARAM::GetUserAccount(*pCdMan->pAccountCache, txUid);
@@ -518,9 +518,9 @@ Value submitcointransferproposal( const Array& params, bool fHelp) {
                 "4.$transfer_amount:       (combomoney, required) the tansfer amount\n"
                 "5.$fee:                   (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitminerfeeproposal", "0-1 100-1 200-1 WICC:1000:wi WICC:0.001:wi")
+                + HelpExampleCli("submitminerfeeproposal", "0-1 100-1 200-1 GVC:1000:wi GVC:0.001:wi")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitminerfeeproposal", "0-1 100-1 200-1 WICC:1000:wi WICC:0.001:wi")
+                + HelpExampleRpc("submitminerfeeproposal", "0-1 100-1 200-1 GVC:1000:wi GVC:0.001:wi")
 
         );
     }
@@ -530,7 +530,7 @@ Value submitcointransferproposal( const Array& params, bool fHelp) {
     const CUserID& fromUid  = RPC_PARAM::GetUserId(params[1]) ;
     const CUserID& toUid    = RPC_PARAM::GetUserId(params[2]) ;
 
-    ComboMoney transferInfo = RPC_PARAM::GetComboMoney(params[3],SYMB::WICC);
+    ComboMoney transferInfo = RPC_PARAM::GetComboMoney(params[3],SYMB::GVC);
     ComboMoney fee          = RPC_PARAM::GetFee(params, 4, PROPOSAL_REQUEST_TX);
     int32_t validHeight     = chainActive.Height();
 
@@ -580,9 +580,9 @@ Value submitpricefeederproposal(const Array& params, bool fHelp) {
                 "                         2 stand for remove\n"
                 "4.\"fee\":              (combomoney, optional) the tx fee \n"
                 "\nExamples:\n"
-                + HelpExampleCli("submitpricefeederproposal", "0-1 100-2 1  WICC:1:WI")
+                + HelpExampleCli("submitpricefeederproposal", "0-1 100-2 1  GVC:1:WI")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("submitpricefeederproposal", "0-1 100-2 1  WICC:1:WI")
+                + HelpExampleRpc("submitpricefeederproposal", "0-1 100-2 1  GVC:1:WI")
 
         );
 
@@ -669,9 +669,9 @@ Value getcdpparam(const Array& params, bool fHelp) {
                 "2.$param_name:       (string, optional)a param name. list all parameters when omitted\n"
 
                 "\nExamples:\n"
-                + HelpExampleCli("getcdpparam", "WICC:WUSD")
+                + HelpExampleCli("getcdpparam", "GVC:WUSD")
                 + "\nAs json rpc call\n"
-                + HelpExampleRpc("getcdpparam", "WICC:WUSD")
+                + HelpExampleRpc("getcdpparam", "GVC:WUSD")
         );
     }
 
@@ -726,8 +726,8 @@ Value listmintxfees(const Array& params, bool fHelp) {
         o.push_back(Pair("txtype_name", std::get<0>(kv.second)));
         o.push_back(Pair("txtype_code", kv.first));
         uint64_t feeOut;
-        if(GetTxMinFee(kv.first,chainActive.Height(), SYMB::WICC,feeOut))
-            o.push_back(Pair("minfee_in_wicc", feeOut));
+        if(GetTxMinFee(kv.first,chainActive.Height(), SYMB::GVC,feeOut))
+            o.push_back(Pair("minfee_in_gvc", feeOut));
 
         if(GetTxMinFee(kv.first,chainActive.Height(), SYMB::WUSD,feeOut))
             o.push_back(Pair("minfee_in_wusd", feeOut));

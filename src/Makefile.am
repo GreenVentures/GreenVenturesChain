@@ -14,7 +14,7 @@ endif
 bin_PROGRAMS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += coind
+  bin_PROGRAMS += coin
 endif
 
 if BUILD_COINLUA
@@ -466,7 +466,7 @@ libcoin_cli_a_SOURCES = \
 nodist_libcoin_common_a_SOURCES = $(top_srcdir)/src/config/build.h
 
 # coin binary #
-coind_LDADD = \
+coin_LDADD = \
   libcoin_server.a \
   libcoin_wallet.a \
   libcoin_cli.a \
@@ -480,16 +480,16 @@ coind_LDADD = \
 #if ENABLE_WALLET
 #coin_LDADD += libcoin_wallet.a
 #endif
-coind_SOURCES = coind.cpp
+coin_SOURCES = coin.cpp
 
 if TARGET_WINDOWS
-coind_SOURCES += coind-res.rc
+coin_SOURCES += coin-res.rc
 endif
 
 liblua53_a_CFLAGS = -fPIC -DLUA_USE_POSIX -Wl,-E
 
 AM_CPPFLAGS += $(BDB_CPPFLAGS)
-coind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+coin_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 
 # coinlua binary
 coinlua_LDADD = liblua53.a -lm

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@
 
 #include "main.h"
 
-/**################################ Base Coin (WICC) Transfer ########################################**/
+/**################################ Base Coin (GVC) Transfer ########################################**/
 bool CBaseCoinTransferTx::CheckTx(CTxExecuteContext &context) {
     IMPLEMENT_DEFINE_CW_STATE;
     IMPLEMENT_CHECK_TX_REGID_OR_PUBKEY(txUid);
@@ -50,7 +50,7 @@ bool CBaseCoinTransferTx::ExecuteTx(CTxExecuteContext &context) {
     }
 
     uint64_t minusValue = llFees + coin_amount;
-    if (!srcAccount.OperateBalance(SYMB::WICC, BalanceOpType::SUB_FREE, minusValue)) {
+    if (!srcAccount.OperateBalance(SYMB::GVC, BalanceOpType::SUB_FREE, minusValue)) {
         return state.DoS(100, ERRORMSG("CBaseCoinTransferTx::ExecuteTx, account has insufficient funds"),
                          UPDATE_ACCOUNT_FAIL, "operate-minus-account-failed");
     }
@@ -69,7 +69,7 @@ bool CBaseCoinTransferTx::ExecuteTx(CTxExecuteContext &context) {
         }
     }
 
-    if (!desAccount.OperateBalance(SYMB::WICC, BalanceOpType::ADD_FREE, coin_amount)) {
+    if (!desAccount.OperateBalance(SYMB::GVC, BalanceOpType::ADD_FREE, coin_amount)) {
         return state.DoS(100, ERRORMSG("CBaseCoinTransferTx::ExecuteTx, operate accounts error"),
                          UPDATE_ACCOUNT_FAIL, "operate-add-account-failed");
     }
@@ -89,7 +89,7 @@ string CBaseCoinTransferTx::ToString(CAccountDBCache &accountCache) {
 }
 
 Object CBaseCoinTransferTx::ToJson(const CAccountDBCache &accountCache) const {
-    SingleTransfer transfer(toUid, SYMB::WICC, coin_amount);
+    SingleTransfer transfer(toUid, SYMB::GVC, coin_amount);
     Array transferArray;
     transferArray.push_back(transfer.ToJson(accountCache));
 

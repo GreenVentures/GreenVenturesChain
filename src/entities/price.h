@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,7 @@
 /**
  * coin price pair, pair<BaseSymbol, QuoteSymbol>
  * always written as BaseSymbol/QuoteSymbol
- * such as: WICC/USD
+ * such as: GVC/USD
  */
 typedef std::pair<TokenSymbol, TokenSymbol> CoinPricePair;
 typedef std::map<CoinPricePair, uint64_t> PriceMap;
@@ -23,7 +23,7 @@ static const PriceMap EMPTY_PRICE_MAP = {};
 static const CoinPricePair kDefaultFcoinPricePair = {SYMB::WGRT, SYMB::USD};
 
 static const UnorderedPairSet<TokenSymbol, TokenSymbol> kCoinPricePairSet = {
-    {SYMB::WICC, SYMB::USD},
+    {SYMB::GVC, SYMB::USD},
     kDefaultFcoinPricePair,
 };
 
@@ -92,7 +92,7 @@ inline const string& GetPriceQuoteSymbol(const CoinPricePair &pricePair) {
  */
 inline shared_ptr<string> CheckPricePair(const CoinPricePair &pricePair) {
     // TODO: support more price pair
-    if (GetPriceBaseSymbol(pricePair) != SYMB::WICC && GetPriceBaseSymbol(pricePair) != SYMB::WGRT)
+    if (GetPriceBaseSymbol(pricePair) != SYMB::GVC && GetPriceBaseSymbol(pricePair) != SYMB::WGRT)
         return make_shared<string>("unsupport base symbol " + GetPriceBaseSymbol(pricePair) + " of price pair");
 
     if (GetPriceQuoteSymbol(pricePair) != SYMB::USD)

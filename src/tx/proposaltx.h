@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@ public:
     CProposalRequestTx(): CBaseTx(PROPOSAL_REQUEST_TX) {}
 
     CProposalRequestTx(const CUserID &txUidIn, int32_t validHeightIn, const TokenSymbol &feeSymbolIn,
-                    uint64_t feesIn, CProposalStorageBean proposalIn ) : 
+                    uint64_t feesIn, CProposalStorageBean proposalIn ) :
                     CBaseTx(PROPOSAL_REQUEST_TX, txUidIn, validHeightIn, feeSymbolIn, feesIn), proposal(proposalIn) {}
 
     ~CProposalRequestTx() {}
@@ -55,7 +55,7 @@ public:
     CProposalApprovalTx(): CBaseTx(PROPOSAL_APPROVAL_TX) {}
 
     CProposalApprovalTx(const CUserID &txUidIn, int32_t validHeightIn, const TokenSymbol &feeSymbolIn,
-                        uint64_t feesIn, const TxID& txidIn) : 
+                        uint64_t feesIn, const TxID& txidIn) :
                         CBaseTx(PROPOSAL_APPROVAL_TX, txUidIn, validHeightIn, feeSymbolIn, feesIn), txid(txidIn) {}
 
     ~CProposalApprovalTx() {}

@@ -13,7 +13,7 @@ fi
 
 set -f
 
-BITCOIND=${1}/bitcoind
+BITCOIND=${1}/bitcoin
 CLI=${1}/bitcoin-cli
 
 DIR="${BASH_SOURCE%/*}"

@@ -60,7 +60,7 @@ namespace wasm {
             }
             result |= uint64_t(precision);
             return result;
-        } 
+        }
 
         CHAIN_CAPTURE_AND_RETHROW( "symbol convert error: %s", str )
     }
@@ -288,7 +288,7 @@ namespace wasm {
     public:
 
         static constexpr uint8_t max_precision = 18;
-        
+
         /**
          * Default constructor, construct a new symbol
          *
@@ -391,13 +391,13 @@ namespace wasm {
                 string s = trim(from);
                 CHAIN_ASSERT(!s.empty(), symbol_type_exception, "creating symbol from empty string");
                 auto comma_pos = s.find(',');
-                CHAIN_ASSERT(comma_pos != string::npos, symbol_type_exception,"missing comma in symbol. eg. '%s'","8,WICC");
+                CHAIN_ASSERT(comma_pos != string::npos, symbol_type_exception,"missing comma in symbol. eg. '%s'","8,GVC");
                 auto prec_part = s.substr(0, comma_pos);
                 uint8_t p = atoi(prec_part.data());
                 string name_part = s.substr(comma_pos + 1);
                 CHAIN_ASSERT( p <= max_precision, symbol_type_exception, "precision '%d' should be <= 18", p);
                 return symbol(string_to_symbol(p, name_part.c_str()));
-            } 
+            }
 
             CHAIN_CAPTURE_AND_RETHROW( "symbol convert error:'%s'", from.c_str() )
         }

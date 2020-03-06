@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -105,7 +105,7 @@ public:
     TxType nTxType;
     mutable CUserID txUid;
     int32_t valid_height;
-    TokenSymbol fee_symbol; // fee symbol, default is WICC, some tx (MAJOR_VER_R1) not serialize this field
+    TokenSymbol fee_symbol; // fee symbol, default is GVC, some tx (MAJOR_VER_R1) not serialize this field
     uint64_t llFees;
     UnsignedCharArray signature;
 
@@ -116,7 +116,7 @@ public:
 public:
     CBaseTx(int32_t nVersionIn, TxType nTxTypeIn, CUserID txUidIn, int32_t nValidHeightIn, uint64_t llFeesIn) :
         nVersion(nVersionIn), nTxType(nTxTypeIn), txUid(txUidIn), valid_height(nValidHeightIn),
-        fee_symbol(SYMB::WICC), llFees(llFeesIn), nRunStep(0), nFuelRate(0) {}
+        fee_symbol(SYMB::GVC), llFees(llFeesIn), nRunStep(0), nFuelRate(0) {}
 
     CBaseTx(TxType nTxTypeIn, CUserID txUidIn, int32_t nValidHeightIn, TokenSymbol feeSymbolIn, uint64_t llFeesIn) :
         nVersion(CURRENT_VERSION), nTxType(nTxTypeIn), txUid(txUidIn), valid_height(nValidHeightIn),
@@ -124,14 +124,14 @@ public:
 
     CBaseTx(TxType nTxTypeIn, CUserID txUidIn, int32_t nValidHeightIn, uint64_t llFeesIn) :
         nVersion(CURRENT_VERSION), nTxType(nTxTypeIn), txUid(txUidIn), valid_height(nValidHeightIn),
-        fee_symbol(SYMB::WICC), llFees(llFeesIn), nRunStep(0), nFuelRate(0) {}
+        fee_symbol(SYMB::GVC), llFees(llFeesIn), nRunStep(0), nFuelRate(0) {}
 
     CBaseTx(int32_t nVersionIn, TxType nTxTypeIn) :
-        nVersion(nVersionIn), nTxType(nTxTypeIn), valid_height(0), fee_symbol(SYMB::WICC), llFees(0), nRunStep(0),
+        nVersion(nVersionIn), nTxType(nTxTypeIn), valid_height(0), fee_symbol(SYMB::GVC), llFees(0), nRunStep(0),
         nFuelRate(0) {}
 
     CBaseTx(TxType nTxTypeIn) :
-        nVersion(CURRENT_VERSION), nTxType(nTxTypeIn), valid_height(0), fee_symbol(SYMB::WICC), llFees(0), nRunStep(0),
+        nVersion(CURRENT_VERSION), nTxType(nTxTypeIn), valid_height(0), fee_symbol(SYMB::GVC), llFees(0), nRunStep(0),
         nFuelRate(0) {}
 
     virtual ~CBaseTx() {}
@@ -174,7 +174,7 @@ public:
     bool IsCoinRewardTx() { return nTxType == UCOIN_REWARD_TX; }
 
     const string& GetTxTypeName() const { return ::GetTxTypeName(nTxType); }
-    
+
 public:
     static unsigned int GetSerializePtrSize(const std::shared_ptr<CBaseTx> &pBaseTx, int nType, int nVersion){
         return pBaseTx->GetSerializeSize(nType, nVersion) + 1;
@@ -202,7 +202,7 @@ protected:
 
 struct SingleTransfer {
     CUserID to_uid;
-    TokenSymbol coin_symbol = SYMB::WICC;
+    TokenSymbol coin_symbol = SYMB::GVC;
     uint64_t coin_amount    = 0;
 
     SingleTransfer() {}

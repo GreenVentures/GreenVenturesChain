@@ -47,12 +47,12 @@ struct TestingSetup {
 							strCurDir += "\\coin_test";
 							string param = "-datadir=";
 							param += strCurDir;
-							const char* argv[] = { "D:\\cppwork\\coin\\src\\coind.exe", param.c_str() };
+							const char* argv[] = { "D:\\cppwork\\coin\\src\\coin.exe", param.c_str() };
 				#else
 							strCurDir +="/coin_test";
 							string param = "-datadir=";
 							param +=strCurDir;
-							const char* argv[] = {"D:\\cppwork\\coin\\src\\coind.exe", param.c_str()};
+							const char* argv[] = {"D:\\cppwork\\coin\\src\\coin.exe", param.c_str()};
 				#endif
 				CBaseParams::InitialParams(argc, argv);
 			}

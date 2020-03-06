@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2017-2018 WaykiChain Developers
+// Copyright (c) 2017-2018 GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -77,7 +77,7 @@ Value submitaccountregistertx(const Array& params, bool fHelp) {
     int32_t validHeight  = chainActive.Height();
 
     CAccount account = RPC_PARAM::GetUserAccount(*pCdMan->pAccountCache, txUid);
-    RPC_PARAM::CheckAccountBalance(account, SYMB::WICC, SUB_FREE, fee.GetSawiAmount());
+    RPC_PARAM::CheckAccountBalance(account, SYMB::GVC, SUB_FREE, fee.GetSawiAmount());
 
     if (account.HaveOwnerPubKey())
         throw JSONRPCError(RPC_WALLET_ERROR, "Account was already registered");
@@ -161,7 +161,7 @@ Value submitutxospendtx(const Array& params, bool fHelp) {
                 "1.\"prior_utxo_txid\":     (string, required) The utxo txid you want to spend\n"
                 "2.\"prior_utxo_secret\":   (string, required) The utxo secret you want to spend\n"
                 "3.\"symbol:coin:unit\":    (symbol:amount:unit, required) transferred coins\n"
-                "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is WICC:10000:sawi\n"
+                "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is GVC:10000:sawi\n"
                 "5.\"utxo_info\"            (json,required) the info of utxo\n"
                 "{\n"
                 "    "
@@ -172,11 +172,11 @@ Value submitutxospendtx(const Array& params, bool fHelp) {
                 "\nExamples:\n" +
                 HelpExampleCli("submitutxospendtx",
                                "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\" \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\" "
-                               "\"WICC:1000000:sawi\" \"WICC:10000:sawi\" \"{}\" \"Hello, WaykiChain!\"") +
+                               "\"GVC:1000000:sawi\" \"GVC:10000:sawi\" \"{}\" \"Hello, GreenVenturesChain!\"") +
                 "\nAs json rpc call\n" +
                 HelpExampleRpc("submitutxospendtx",
                                "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\", \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\", "
-                               "\"WICC:1000000:sawi\", \"WICC:10000:sawi\", \"{}\", \"Hello, WaykiChain!\""));
+                               "\"GVC:1000000:sawi\", \"GVC:10000:sawi\", \"{}\", \"Hello, GreenVenturesChain!\""));
 
     // EnsureWalletIsUnlocked();
 
@@ -256,7 +256,7 @@ Value submitcreateutxotx(const Array& params, bool fHelp ){
                 "1.\"from\":                (string, required) The address where coins are sent from\n"
                 "2.\"to\":                  (string, required) The address where coins are received\n"
                 "3.\"symbol:coin:unit\":    (symbol:amount:unit, required) transferred coins\n"
-                "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is WICC:10000:sawi\n"
+                "4.\"symbol:fee:unit\":     (symbol:amount:unit, required) fee paid to miner, default is GVC:10000:sawi\n"
                 "5.\"utxo_info\"            (json,required) the info of utxo\n"
                 "{\n"
                 "    "
@@ -267,17 +267,17 @@ Value submitcreateutxotx(const Array& params, bool fHelp ){
                 "\nExamples:\n" +
                 HelpExampleCli("submitcreateutxotx",
                                "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\" \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\" "
-                               "\"WICC:1000000:sawi\" \"WICC:10000:sawi\" \"{}\" \"Hello, WaykiChain!\"") +
+                               "\"GVC:1000000:sawi\" \"GVC:10000:sawi\" \"{}\" \"Hello, GreenVenturesChain!\"") +
                 "\nAs json rpc call\n" +
                 HelpExampleRpc("submitcreateutxotx",
                                "\"wLKf2NqwtHk3BfzK5wMDfbKYN1SC3weyR4\", \"wNDue1jHcgRSioSDL4o1AzXz3D72gCMkP6\", "
-                               "\"WICC:1000000:sawi\", \"WICC:10000:sawi\", \"{}\", \"Hello, WaykiChain!\""));
+                               "\"GVC:1000000:sawi\", \"GVC:10000:sawi\", \"{}\", \"Hello, GreenVenturesChain!\""));
 
     // EnsureWalletIsUnlocked();
 
     // CUserID sendUserId = RPC_PARAM::GetUserId(params[0], true);
     // CUserID recvUserId = RPC_PARAM::GetUserId(params[1]);
-    // ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[2], SYMB::WICC);
+    // ComboMoney cmCoin  = RPC_PARAM::GetComboMoney(params[2], SYMB::GVC);
     // ComboMoney cmFee   = RPC_PARAM::GetFee(params, 3, UCOIN_TRANSFER_TX);
     // Object utxoInfo = params[4].get_obj() ;
     // string memo = "";
@@ -356,10 +356,10 @@ Value submitcontractdeploytx(const Array& params, bool fHelp) {
             "\"txid\":              (string)\n"
             "\nExamples:\n"
             + HelpExampleCli("submitcontractdeploytx",
-                "\"WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH\" \"/tmp/lua/myapp.lua\" 100000000 10000 \"Hello, WaykiChain!\"") +
+                "\"WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH\" \"/tmp/lua/myapp.lua\" 100000000 10000 \"Hello, GreenVenturesChain!\"") +
                 "\nAs json rpc call\n"
             + HelpExampleRpc("submitcontractdeploytx",
-                "WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH, \"/tmp/lua/myapp.lua\", 100000000, 10000, \"Hello, WaykiChain!\""));
+                "WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH, \"/tmp/lua/myapp.lua\", 100000000, 10000, \"Hello, GreenVenturesChain!\""));
     }
 
     RPCTypeCheck(params, list_of(str_type)(str_type)(str_type)(int_type)(str_type));
@@ -379,7 +379,7 @@ Value submitcontractdeploytx(const Array& params, bool fHelp) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Regid does not exist or immature");
 
     CAccount account = RPC_PARAM::GetUserAccount(*pCdMan->pAccountCache, txUid);
-    RPC_PARAM::CheckAccountBalance(account, SYMB::WICC, SUB_FREE, fee.GetSawiAmount());
+    RPC_PARAM::CheckAccountBalance(account, SYMB::GVC, SUB_FREE, fee.GetSawiAmount());
 
     CLuaContractDeployTx tx;
     tx.txUid        = txUid;
@@ -400,7 +400,7 @@ Value submitcontractcalltx(const Array& params, bool fHelp) {
             "1.\"sender_addr\":     (string, required) tx sender's base58 addr\n"
             "2.\"contract_regid\":  (string, required) contract regid\n"
             "3.\"arguments\":       (string, required) contract arguments (Hex encode required)\n"
-            "4.\"amount\":          (numeric, required) amount of WICC to be sent to the contract account\n"
+            "4.\"amount\":          (numeric, required) amount of GVC to be sent to the contract account\n"
             "5.\"fee\":             (numeric, required) pay to miner\n"
             "6.\"height\":          (numberic, optional) valid height\n"
             "\nResult:\n"
@@ -439,8 +439,8 @@ Value submitcontractcalltx(const Array& params, bool fHelp) {
     int32_t validHegiht = (params.size() > 5) ? params[5].get_int() : chainActive.Height();
 
     CAccount account = RPC_PARAM::GetUserAccount(*pCdMan->pAccountCache, txUid);
-    RPC_PARAM::CheckAccountBalance(account, SYMB::WICC, SUB_FREE, amount);
-    RPC_PARAM::CheckAccountBalance(account, SYMB::WICC, SUB_FREE, fee.GetSawiAmount());
+    RPC_PARAM::CheckAccountBalance(account, SYMB::GVC, SUB_FREE, amount);
+    RPC_PARAM::CheckAccountBalance(account, SYMB::GVC, SUB_FREE, fee.GetSawiAmount());
 
     CLuaContractInvokeTx tx;
     tx.nTxType      = LCONTRACT_INVOKE_TX;
@@ -496,7 +496,7 @@ Value submitdelegatevotetx(const Array& params, bool fHelp) {
     int32_t validHegiht  = params.size() > 3 ? params[3].get_int() : chainActive.Height();
 
     CAccount account = RPC_PARAM::GetUserAccount(*pCdMan->pAccountCache, txUid);
-    RPC_PARAM::CheckAccountBalance(account, SYMB::WICC, SUB_FREE, fee.GetSawiAmount());
+    RPC_PARAM::CheckAccountBalance(account, SYMB::GVC, SUB_FREE, fee.GetSawiAmount());
 
     CDelegateVoteTx delegateVoteTx;
     delegateVoteTx.txUid        = txUid;
@@ -539,7 +539,7 @@ Value submitucontractdeploytx(const Array& params, bool fHelp) {
             "\nArguments:\n"
             "1.\"addr\":            (string, required) contract owner address from this wallet\n"
             "2.\"filepath\":        (string, required) the file path of the app script\n"
-            "3.\"symbol:fee:unit\": (symbol:amount:unit, required) fee paid to miner, default is WICC:100000000:sawi\n"
+            "3.\"symbol:fee:unit\": (symbol:amount:unit, required) fee paid to miner, default is GVC:100000000:sawi\n"
             "4.\"height\":          (numeric, optional) valid height, when not specified, the tip block height in "
             "chainActive will be used\n"
             "5.\"contract_memo\":   (string, optional) contract memo\n"
@@ -547,12 +547,12 @@ Value submitucontractdeploytx(const Array& params, bool fHelp) {
             "\"txid\":              (string)\n"
             "\nExamples:\n" +
             HelpExampleCli("submitucontractdeploytx",
-                           "\"WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH\" \"/tmp/lua/myapp.lua\" \"WICC:100000000:sawi\" "
-                           "10000 \"Hello, WaykiChain!\"") +
+                           "\"WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH\" \"/tmp/lua/myapp.lua\" \"GVC:100000000:sawi\" "
+                           "10000 \"Hello, GreenVenturesChain!\"") +
             "\nAs json rpc call\n" +
             HelpExampleRpc("submitucontractdeploytx",
-                           "WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH, \"/tmp/lua/myapp.lua\", \"WICC:100000000:sawi\", "
-                           "10000, \"Hello, WaykiChain!\""));
+                           "WiZx6rrsBn9sHjwpvdwtMNNX2o31s3DEHH, \"/tmp/lua/myapp.lua\", \"GVC:100000000:sawi\", "
+                           "10000, \"Hello, GreenVenturesChain!\""));
     }
 
     RPCTypeCheck(params, list_of(str_type)(str_type)(str_type)(int_type)(str_type));
@@ -596,18 +596,18 @@ Value submitucontractcalltx(const Array& params, bool fHelp) {
             "2.\"contract_regid\":  (string, required) contract regid\n"
             "3.\"arguments\":       (string, required) contract arguments (Hex encode required)\n"
             "4.\"symbol:coin:unit\":(symbol:amount:unit, required) transferred coins\n"
-            "5.\"symbol:fee:unit\": (symbol:amount:unit, required) fee paid to miner, default is WICC:10000:sawi\n"
+            "5.\"symbol:fee:unit\": (symbol:amount:unit, required) fee paid to miner, default is GVC:10000:sawi\n"
             "6.\"height\":          (numberic, optional) valid height\n"
             "\nResult:\n"
             "\"txid\":              (string)\n"
             "\nExamples:\n" +
             HelpExampleCli("submitucontractcalltx",
-                           "\"wQWKaN4n7cr1HLqXY3eX65rdQMAL5R34k6\" \"100-1\" \"01020304\" \"WICC:10000:sawi\" "
-                           "\"WICC:10000:sawi\" 100") +
+                           "\"wQWKaN4n7cr1HLqXY3eX65rdQMAL5R34k6\" \"100-1\" \"01020304\" \"GVC:10000:sawi\" "
+                           "\"GVC:10000:sawi\" 100") +
             "\nAs json rpc call\n" +
             HelpExampleRpc("submitucontractcalltx",
-                           "\"wQWKaN4n7cr1HLqXY3eX65rdQMAL5R34k6\", \"100-1\", \"01020304\", \"WICC:10000:sawi\", "
-                           "\"WICC:10000:sawi\", 100"));
+                           "\"wQWKaN4n7cr1HLqXY3eX65rdQMAL5R34k6\", \"100-1\", \"01020304\", \"GVC:10000:sawi\", "
+                           "\"GVC:10000:sawi\", 100"));
     }
 
     RPCTypeCheck(params, list_of(str_type)(str_type)(str_type)(str_type)(str_type)(int_type));
@@ -631,7 +631,7 @@ Value submitucontractcalltx(const Array& params, bool fHelp) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Arguments's size is out of range");
     }
 
-    ComboMoney cmCoin   = RPC_PARAM::GetComboMoney(params[3], SYMB::WICC);
+    ComboMoney cmCoin   = RPC_PARAM::GetComboMoney(params[3], SYMB::GVC);
     ComboMoney cmFee    = RPC_PARAM::GetFee(params, 4, UCONTRACT_INVOKE_TX);
     int32_t validHegiht = (params.size() > 5) ? params[5].get_int() : chainActive.Height();
 
@@ -824,7 +824,7 @@ Value getaccountinfo(const Array& params, bool fHelp) {
         obj.push_back(Pair("registered", true));
 
         // TODO: multi stable coin
-        uint64_t bcoinMedianPrice = pCdMan->pPriceFeedCache->GetMedianPrice(CoinPricePair(SYMB::WICC, SYMB::USD));
+        uint64_t bcoinMedianPrice = pCdMan->pPriceFeedCache->GetMedianPrice(CoinPricePair(SYMB::GVC, SYMB::USD));
         Array cdps;
         vector<CUserCDP> userCdps;
         if (pCdMan->pCdpCache->GetCDPList(account.regid, userCdps)) {
@@ -1209,9 +1209,9 @@ Value signtxraw(const Array& params, bool fHelp) {
             "\nsignature transaction\n"
             "\nArguments:\n"
             "1.\"str\": (string, required) Hex-format string, no longer than 65K in binary bytes\n"
-            "2.\"addr\": (string, required) A json array of WICC addresses\n"
+            "2.\"addr\": (string, required) A json array of GVC addresses\n"
             "[\n"
-            "  \"address\"  (string) WICC address\n"
+            "  \"address\"  (string) GVC address\n"
             "  ...,\n"
             "]\n"
             "\nExamples:\n" +
@@ -1416,7 +1416,7 @@ Value getcontractaccountinfo(const Array& params, bool fHelp) {
         CRegID acctRegId(params[1].get_str());
         CUserID acctUserId(acctRegId);
         acctKey = RegIDToAddress(acctUserId);
-    } else { //in wicc address format
+    } else { //in gvc address format
         acctKey = params[1].get_str();
     }
 

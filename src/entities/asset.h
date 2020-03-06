@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,11 +25,11 @@ using namespace json_spirit;
 using namespace std;
 
 struct ComboMoney {
-    TokenSymbol     symbol;     //E.g. WICC
+    TokenSymbol     symbol;     //E.g. GVC
     uint64_t        amount;
     CoinUnitName    unit;       //E.g. sawi
 
-    ComboMoney() : symbol(SYMB::WICC), amount(0), unit(COIN_UNIT::SAWI){};
+    ComboMoney() : symbol(SYMB::GVC), amount(0), unit(COIN_UNIT::SAWI){};
 
     uint64_t GetSawiAmount() const {
         auto it = CoinUnitTypeTable.find(unit);
@@ -43,7 +43,7 @@ struct ComboMoney {
 };
 
 static const unordered_set<string> kCoinTypeSet = {
-    SYMB::WICC, SYMB::WGRT, SYMB::WUSD
+    SYMB::GVC, SYMB::WGRT, SYMB::WUSD
 };
 
 static const unordered_set<string> kCurrencyTypeSet = {
@@ -55,12 +55,12 @@ static const unordered_set<string> kScoinSymbolSet = {
 };
 
 static const UnorderedPairSet<TokenSymbol, TokenSymbol> kCDPCoinPairSet = {
-    {SYMB::WICC, SYMB::WUSD},
+    {SYMB::GVC, SYMB::WUSD},
     {SYMB::WBTC, SYMB::WUSD},
     {SYMB::WETH, SYMB::WUSD},
     // {SYMB::WEOS, SYMB::WUSD},
 
-    // {SYMB::WICC, SYMB::WCNY},
+    // {SYMB::GVC, SYMB::WCNY},
     // {SYMB::WBTC, SYMB::WCNY},
     // {SYMB::WETH, SYMB::WCNY},
     // {SYMB::WEOS, SYMB::WCNY},
@@ -136,8 +136,8 @@ enum AssetPermType : uint64_t {
 ////////////////////////////////////////////////////////////////////
 class CAsset {
 public:
-    TokenSymbol asset_symbol;       //asset symbol, E.g WICC | WUSD
-    TokenName   asset_name;         //asset long name, E.g WaykiChain coin
+    TokenSymbol asset_symbol;       //asset symbol, E.g GVC | WUSD
+    TokenName   asset_name;         //asset long name, E.g GreenVenturesChain coin
     AssetType   asset_type;         //asset type
     uint64_t    asset_perms_sum;    //a sum of asset perms
     CUserID     owner_uid;          //creator or owner user id of the asset

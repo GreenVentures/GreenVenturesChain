@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -252,9 +252,9 @@ Object CAccount::ToJsonObj() const {
         Object tokenObj;
         const CAccountToken &token = tokenPair.second;
 
-        uint64_t total_amount = token.free_amount + token.staked_amount + token.frozen_amount 
+        uint64_t total_amount = token.free_amount + token.staked_amount + token.frozen_amount
                                 + token.voted_amount + token.pledged_amount;
-        
+
         if (total_amount == 0)
             continue;
 
@@ -332,7 +332,7 @@ bool CAccount::ProcessCandidateVotes(const vector<CCandidateVote> &candidateVote
     }
 
     auto featureForkVersion = GetFeatureForkVersion(currHeight);
-    uint64_t lastTotalVotes = GetToken(SYMB::WICC).voted_amount;
+    uint64_t lastTotalVotes = GetToken(SYMB::GVC).voted_amount;
 
     for (const auto &vote : candidateVotesIn) {
         const CUserID &voteId = vote.GetCandidateUid();
@@ -420,22 +420,22 @@ bool CAccount::ProcessCandidateVotes(const vector<CCandidateVote> &candidateVote
 
     if (newTotalVotes > lastTotalVotes) {
         uint64_t addedVotes = newTotalVotes - lastTotalVotes;
-        if (!OperateBalance(SYMB::WICC, BalanceOpType::VOTE, addedVotes)) {
+        if (!OperateBalance(SYMB::GVC, BalanceOpType::VOTE, addedVotes)) {
             return ERRORMSG(
                 "ProcessCandidateVotes() : delegate votes exceeds account bcoins when voting! "
                 "newTotalVotes=%llu, lastTotalVotes=%llu, freeAmount=%llu",
-                newTotalVotes, lastTotalVotes, GetToken(SYMB::WICC).free_amount);
+                newTotalVotes, lastTotalVotes, GetToken(SYMB::GVC).free_amount);
         }
-        receipts.emplace_back(regid, nullId, SYMB::WICC, addedVotes, ReceiptCode::DELEGATE_ADD_VOTE);
+        receipts.emplace_back(regid, nullId, SYMB::GVC, addedVotes, ReceiptCode::DELEGATE_ADD_VOTE);
     } else if (newTotalVotes < lastTotalVotes) {
         uint64_t subVotes = lastTotalVotes - newTotalVotes;
-        if (!OperateBalance(SYMB::WICC, BalanceOpType::UNVOTE, subVotes)) {
+        if (!OperateBalance(SYMB::GVC, BalanceOpType::UNVOTE, subVotes)) {
             return ERRORMSG(
                 "ProcessCandidateVotes() : delegate votes insufficient to unvote! "
                 "newTotalVotes=%llu, lastTotalVotes=%llu, freeAmount=%llu",
-                newTotalVotes, lastTotalVotes, GetToken(SYMB::WICC).free_amount);
+                newTotalVotes, lastTotalVotes, GetToken(SYMB::GVC).free_amount);
         }
-        receipts.emplace_back(nullId, regid, SYMB::WICC, subVotes, ReceiptCode::DELEGATE_SUB_VOTE);
+        receipts.emplace_back(nullId, regid, SYMB::GVC, subVotes, ReceiptCode::DELEGATE_SUB_VOTE);
     } // else newTotalVotes == lastTotalVotes // do nothing
 
     // collect inflated bcoins or fcoins
@@ -458,10 +458,10 @@ bool CAccount::ProcessCandidateVotes(const vector<CCandidateVote> &candidateVote
         if (!IsBcoinWithinRange(bcoinAmountToInflate))
             return false;
 
-        if (!OperateBalance(SYMB::WICC, BalanceOpType::ADD_FREE, bcoinAmountToInflate)) {
+        if (!OperateBalance(SYMB::GVC, BalanceOpType::ADD_FREE, bcoinAmountToInflate)) {
             return ERRORMSG("ProcessCandidateVotes() : add bcoins to inflate failed");
         }
-        receipts.emplace_back(nullId, regid, SYMB::WICC, bcoinAmountToInflate, ReceiptCode::DELEGATE_VOTE_INTEREST);
+        receipts.emplace_back(nullId, regid, SYMB::GVC, bcoinAmountToInflate, ReceiptCode::DELEGATE_VOTE_INTEREST);
 
         LogPrint(BCLog::PROFIT, "Account(%s) received vote staking interest amount (bcoins): %llu\n",
                 regid.ToString(), bcoinAmountToInflate);

@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The WaykiChain developers
+// Copyright (c) 2009-2014 The GreenVenturesChain developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,8 +85,8 @@ Value getinfo(const Array& params, bool fHelp) {
             "  \"wallet_unlock_time\": xxxxx,   (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 "
             "GMT) that the wallet is unlocked for transfers, or 0 if the wallet is being locked\n"
 
-            "  \"perkb_miner_fee\": x.xxxx,     (numeric) the transaction fee set in wicc/kb\n"
-            "  \"perkb_relay_fee\": x.xxxx,     (numeric) minimum relay fee for non-free transactions in wicc/kb\n"
+            "  \"perkb_miner_fee\": x.xxxx,     (numeric) the transaction fee set in gvc/kb\n"
+            "  \"perkb_relay_fee\": x.xxxx,     (numeric) minimum relay fee for non-free transactions in gvc/kb\n"
             "  \"tipblock_fuel_rate\": xxxxx,   (numeric) the fuelrate of the tip block in chainActive\n"
             "  \"tipblock_fuel\": xxxxx,        (numeric) the fuel of the tip block in chainActive\n"
             "  \"tipblock_time\": xxxxx,        (numeric) the nTime of the tip block in chainActive\n"
@@ -116,7 +116,7 @@ Value getinfo(const Array& params, bool fHelp) {
     obj.push_back(Pair("time_offset",           GetTimeOffset()));
 
     if (pWalletMain) {
-        obj.push_back(Pair("WICC_balance",    ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::WICC))));
+        obj.push_back(Pair("GVC_balance",    ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::GVC))));
         obj.push_back(Pair("WUSD_balance",    ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::WUSD))));
         obj.push_back(Pair("WGRT_balance",    ValueFromAmount(pWalletMain->GetFreeCoins(SYMB::WGRT))));
         if (pWalletMain->IsEncrypted())

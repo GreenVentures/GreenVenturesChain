@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -60,8 +60,8 @@ std::shared_ptr<string>  CLuaVMRunEnv::ExecuteContract(CLuaVMContext *pContextIn
     }
 
     LogPrint(BCLog::LUAVM, "isCheckAccount: %d\n", isCheckAccount);
-    // CheckAppAcctOperate only support to check when the transfer symbol is WICC
-    if (isCheckAccount && p_context->transfer_symbol == SYMB::WICC && !CheckAppAcctOperate()) {
+    // CheckAppAcctOperate only support to check when the transfer symbol is GVC
+    if (isCheckAccount && p_context->transfer_symbol == SYMB::GVC && !CheckAppAcctOperate()) {
         return make_shared<string>("VmScript CheckAppAcct Failed");
     }
 
@@ -162,7 +162,7 @@ bool CLuaVMRunEnv::CheckOperate() {
 }
 
 bool CLuaVMRunEnv::CheckAppAcctOperate() {
-    assert(p_context->transfer_symbol == SYMB::WICC);
+    assert(p_context->transfer_symbol == SYMB::GVC);
     int64_t addValue(0), minusValue(0), sumValue(0);
     for (auto vOpItem : mapAppFundOperate) {
         for (auto appFund : vOpItem.second) {
@@ -242,7 +242,7 @@ bool CLuaVMRunEnv::CheckAppAcctOperate() {
         LogPrint(BCLog::LUAVM,
                  "CheckAppAcctOperate: addValue=%lld, minusValue=%lld, txValue[%s]=%lld, "
                  "sysContractAcct=%lld, sumValue=%lld, sysAcctSum=%lld\n",
-                 addValue, minusValue, SYMB::WICC, p_context->transfer_amount, sysContractAcct, sumValue, sysAcctSum);
+                 addValue, minusValue, SYMB::GVC, p_context->transfer_amount, sysContractAcct, sumValue, sysAcctSum);
 
         return false;
     }
@@ -280,16 +280,16 @@ bool CLuaVMRunEnv::OperateAccount(const vector<CVmOperate>& operates) {
         LogPrint(BCLog::LUAVM, "uid=%s\nbefore account: %s\n", uid.ToString(),
                  pAccount->ToString());
 
-        if (!pAccount->OperateBalance(SYMB::WICC, operate.opType, value)) {
+        if (!pAccount->OperateBalance(SYMB::GVC, operate.opType, value)) {
             LogPrint(BCLog::LUAVM, "[ERR]CLuaVMRunEnv::OperateAccount(), operate account failed! uid=%s, operate=%s\n",
                 uid.ToString(), GetBalanceOpTypeName(operate.opType));
             return false;
         }
 
         if (operate.opType == BalanceOpType::ADD_FREE) {
-            receipts.emplace_back(nullId, uid, SYMB::WICC, value, ReceiptCode::CONTRACT_ACCOUNT_OPERATE_ADD);
+            receipts.emplace_back(nullId, uid, SYMB::GVC, value, ReceiptCode::CONTRACT_ACCOUNT_OPERATE_ADD);
         } else if (operate.opType == BalanceOpType::SUB_FREE) {
-            receipts.emplace_back(uid, nullId, SYMB::WICC, value, ReceiptCode::CONTRACT_ACCOUNT_OPERATE_SUB);
+            receipts.emplace_back(uid, nullId, SYMB::GVC, value, ReceiptCode::CONTRACT_ACCOUNT_OPERATE_SUB);
         }
 
         if (!p_context->p_cw->accountCache.SetAccount(pAccount->keyid, *pAccount)) {

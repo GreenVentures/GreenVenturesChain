@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -98,7 +98,7 @@ bool CLuaContractDeployTx::ExecuteTx(CTxExecuteContext &context) {
     }
 
     CAccount accountLog(account);
-    if (!account.OperateBalance(SYMB::WICC, BalanceOpType::SUB_FREE, llFees)) {
+    if (!account.OperateBalance(SYMB::GVC, BalanceOpType::SUB_FREE, llFees)) {
             return state.DoS(100, ERRORMSG("CLuaContractDeployTx::ExecuteTx, operate account failed ,regId=%s",
                             txUid.ToString()), UPDATE_ACCOUNT_FAIL, "operate-account-failed");
     }
@@ -207,7 +207,7 @@ bool CLuaContractInvokeTx::ExecuteTx(CTxExecuteContext &context) {
         return false;
     }
 
-    if (!srcAccount.OperateBalance(SYMB::WICC, BalanceOpType::SUB_FREE, llFees + coin_amount))
+    if (!srcAccount.OperateBalance(SYMB::GVC, BalanceOpType::SUB_FREE, llFees + coin_amount))
         return state.DoS(100, ERRORMSG("CLuaContractInvokeTx::ExecuteTx, accounts hash insufficient funds"),
                          UPDATE_ACCOUNT_FAIL, "operate-minus-account-failed");
 
@@ -221,7 +221,7 @@ bool CLuaContractInvokeTx::ExecuteTx(CTxExecuteContext &context) {
                         app_uid.get<CRegID>().ToString()), READ_ACCOUNT_FAIL, "bad-read-accountdb");
     }
 
-    if (!desAccount.OperateBalance(SYMB::WICC, BalanceOpType::ADD_FREE, coin_amount)) {
+    if (!desAccount.OperateBalance(SYMB::GVC, BalanceOpType::ADD_FREE, coin_amount)) {
         return state.DoS(100, ERRORMSG("CLuaContractInvokeTx::ExecuteTx, operate accounts error"),
                         UPDATE_ACCOUNT_FAIL, "operate-add-account-failed");
     }
@@ -244,7 +244,7 @@ bool CLuaContractInvokeTx::ExecuteTx(CTxExecuteContext &context) {
     luaContext.prev_block_time   = context.prev_block_time;
     luaContext.p_base_tx         = this;
     luaContext.fuel_limit        = fuelLimit;
-    luaContext.transfer_symbol   = SYMB::WICC;
+    luaContext.transfer_symbol   = SYMB::GVC;
     luaContext.transfer_amount   = coin_amount;
     luaContext.p_tx_user_account = &srcAccount;
     luaContext.p_app_account     = &desAccount;
@@ -282,7 +282,7 @@ Object CLuaContractInvokeTx::ToJson(const CAccountDBCache &accountCache) const {
     accountCache.GetKeyId(app_uid, desKeyId);
     result.push_back(Pair("to_addr",        desKeyId.ToAddress()));
     result.push_back(Pair("to_uid",         app_uid.ToString()));
-    result.push_back(Pair("coin_symbol",    SYMB::WICC));
+    result.push_back(Pair("coin_symbol",    SYMB::GVC));
     result.push_back(Pair("coin_amount",    coin_amount));
     result.push_back(Pair("arguments",      HexStr(arguments)));
 

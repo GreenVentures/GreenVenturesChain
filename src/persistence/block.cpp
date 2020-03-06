@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -69,10 +69,10 @@ uint256 CBlock::CheckMerkleBranch(uint256 hash, const vector<uint256>& vMerkleBr
 }
 
 map<TokenSymbol, uint64_t> CBlock::GetFees() const {
-    map<TokenSymbol, uint64_t> fees = {{SYMB::WICC, 0}, {SYMB::WUSD, 0}};
+    map<TokenSymbol, uint64_t> fees = {{SYMB::GVC, 0}, {SYMB::WUSD, 0}};
     for (uint32_t i = 1; i < vptx.size(); ++i) {
         auto fees_symbol = std::get<0>(vptx[i]->GetFees());
-        assert(fees_symbol == SYMB::WICC || fees_symbol == SYMB::WUSD);
+        assert(fees_symbol == SYMB::GVC || fees_symbol == SYMB::WUSD);
         fees[fees_symbol] = std::get<1>(vptx[i]->GetFees());
     }
 

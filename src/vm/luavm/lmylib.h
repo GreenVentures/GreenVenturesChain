@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -167,7 +167,7 @@ int32_t ExModifyDataDBFunc(lua_State *L);
  *      operatorType: (number, required)  operator type, enum(ADD_FREE=1, SUB_FREE=2)
  *      outHeight: (number, required)     timeout height, use by contract script
  *      moneyTbl: (array, required)       money amount, serialized format of int64 (little endian)
- *      moneySymbol: (string, optional)   money symbol, must be valid symbol, such as WICC|WUSD, default is WICC
+ *      moneySymbol: (string, optional)   money symbol, must be valid symbol, such as GVC|WUSD, default is GVC
  * }
  * @return write succeed or not
  */
@@ -226,7 +226,7 @@ int32_t ExLuaPrint(lua_State *L);
  *   isContractAccount: (boolean, required), Is contract account or tx sender' account
  *   toAddressType: (number, required)       The to address type of the transfer, REGID = 1, BASE58 = 2
  *   toAddress: (array, required)            The to address of the transfer, array format
- *   tokenType: (string, required)           Token type of the transfer, such as WICC | WUSD
+ *   tokenType: (string, required)           Token type of the transfer, such as GVC | WUSD
  *   tokenAmount: (array, required)          Token amount of the transfer
  * }
  * @return succeed or not
@@ -242,7 +242,7 @@ int32_t ExTransferAccountAssetFunc(lua_State *L);
  *     isContractAccount: (boolean, required), Is contract account or tx sender' account
  *     toAddressType: (number, required)       The to address type of the transfer, REGID = 1, BASE58 = 2
  *     toAddress: (array, required)            The to address of the transfer, array format
- *     tokenType: (string, required)           Token type of the transfer, such as WICC | WUSD
+ *     tokenType: (string, required)           Token type of the transfer, such as GVC | WUSD
  *     tokenAmount: (array, required)          Token amount of the transfer
  *   },
  *   ...
@@ -271,7 +271,7 @@ int32_t ExGetCurTxInputAssetFunc(lua_State *L);
  * {
  *   addressType: (number, required)       address type, REGID = 1, BASE58 = 2
  *   address: (array, required)            address, array format
- *   tokenType: (string, required)         Token type of the transfer, such as WICC | WUSD
+ *   tokenType: (string, required)         Token type of the transfer, such as GVC | WUSD
  * }
  * @return asset info table or none
  * {
@@ -291,7 +291,7 @@ int32_t ExGetAccountAssetFunc(lua_State *L);
  * get asset price of baseSymbol/quoteSymbol pair
  * @param paramTable: table     get asset price param table
  * {
- *   baseSymbol: (string, required)       base symbol of price, such as WICC
+ *   baseSymbol: (string, required)       base symbol of price, such as GVC
  *   quoteSymbol: (array, required)        quote symbol of price, such as USD
  * }
  * @return price (int)

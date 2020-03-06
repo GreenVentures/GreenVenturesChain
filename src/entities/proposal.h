@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2017-2019 The WaykiChain Developers
+// Copyright (c) 2017-2019 The GreenVenturesChain Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.'
 
@@ -542,7 +542,7 @@ static const std::map<TokenSymbol, TokenSymbol> kXChainSwapTokenMap =  {
     { SYMB::BTC,     SYMB::WBTC  },
     { SYMB::ETH,     SYMB::WETH  },
     { SYMB::WBTC,    SYMB::BTC   },
-    { SYMB::WETH,    SYMB::ETH   },   
+    { SYMB::WETH,    SYMB::ETH   },
     // {SYMB::ETH_USDT, SYMB::WETH_USDT},
 };
 
@@ -552,18 +552,18 @@ public:
     TokenSymbol peer_chain_token_symbol; // from kXChainSwapTokenMap to get the target token symbol
     string      peer_chain_uid;  // initiator's address at peer chain
     string      peer_chain_txid; // a proof from the peer chain (non-HTLC version)
-    
+
     CUserID     self_chain_uid;
     uint64_t    swap_amount;
 
     CXChainSwapInProposal(): CProposal(ProposalType::XCHAIN_SWAP_IN) {}
     CXChainSwapInProposal(ChainType peerChainType, TokenSymbol peerChainTokenSymbol, string &peerChainUid, string &peerChainTxid,
-                        CUserID &selfChainUid, uint64_t &swapAmount): CProposal(ProposalType::XCHAIN_SWAP_IN), 
-                        peer_chain_type(peerChainType), 
-                        peer_chain_token_symbol(peerChainTokenSymbol), 
+                        CUserID &selfChainUid, uint64_t &swapAmount): CProposal(ProposalType::XCHAIN_SWAP_IN),
+                        peer_chain_type(peerChainType),
+                        peer_chain_token_symbol(peerChainTokenSymbol),
                         peer_chain_uid(peerChainUid),
                         peer_chain_txid(peerChainTxid),
-                        self_chain_uid(selfChainUid), 
+                        self_chain_uid(selfChainUid),
                         swap_amount(swapAmount) {}
 
     IMPLEMENT_SERIALIZE(
@@ -593,7 +593,7 @@ public:
         return  strprintf("peer_chain_type=%d, peer_chain_token_symbol=%s, peer_chain_uid=%, peer_chain_txid=%, self_chain_uid=%s, swap_amount=%llu",
                         peer_chain_type, peer_chain_token_symbol, peer_chain_uid, peer_chain_txid, self_chain_uid.ToString(), swap_amount);
     }
-    
+
     shared_ptr<CProposal> GetNewInstance() override { return make_shared<CXChainSwapInProposal>(*this); } ;
 
     bool CheckProposal(CTxExecuteContext& context) override;
@@ -603,19 +603,19 @@ public:
 
 class CXChainSwapOutProposal: public CProposal {
 public:
-    CUserID     self_chain_uid;  // swap-out initiator's address 
+    CUserID     self_chain_uid;  // swap-out initiator's address
     TokenSymbol self_chain_token_symbol; // from kXChainSwapTokenMap to get the target token symbol
 
     ChainType   peer_chain_type = ChainType::BITCOIN; //redudant, reference only
     string      peer_chain_uid;  // swap-out peer-chain address
     uint64_t    swap_amount;
-    
-    
+
+
     CXChainSwapOutProposal(): CProposal(ProposalType::XCHAIN_SWAP_OUT) {}
     CXChainSwapOutProposal(CUserID &uid, TokenSymbol selfChainTokenSymbol, ChainType peerChainType, string &peerChainUid,
-                        uint64_t &swapAmount): CProposal(ProposalType::XCHAIN_SWAP_OUT), 
-                        self_chain_uid(uid), 
-                        self_chain_token_symbol(selfChainTokenSymbol), 
+                        uint64_t &swapAmount): CProposal(ProposalType::XCHAIN_SWAP_OUT),
+                        self_chain_uid(uid),
+                        self_chain_token_symbol(selfChainTokenSymbol),
                         peer_chain_type(peerChainType),
                         peer_chain_uid(peerChainUid),
                         swap_amount(swapAmount) {}
@@ -672,7 +672,7 @@ public:
     unsigned int GetSerializeSize(int nType, int nVersion) const {
         if(IsEmpty())
             return 1 ;
-  
+
         return (*sp_proposal).GetSerializeSize(nType, nVersion) + 1 ;
     }
 

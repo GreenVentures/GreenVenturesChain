@@ -17,7 +17,7 @@ static const CRegID id; // to fix the link error: undefined reference to `CRegID
 struct FDBAccessTests {
     FDBAccessTests() {
         BOOST_TEST_MESSAGE( "setup FDBAccessTests" );
-        root_dir = "/tmp/coind_unit_test";
+        root_dir = "/tmp/coin_unit_test";
         if (boost::filesystem::exists(root_dir))
             BOOST_CHECK(boost::filesystem::is_directory(root_dir));
         else
