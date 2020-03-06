@@ -6,8 +6,6 @@ Quick Resource Access
 
 ## :: Developer Documentation
 
-* [English version (英文版)](https://gvc-devbook.readthedocs.io/en/latest)
-* [Chinese version (中文版)](https://gvc-devbook.readthedocs.io/zh_CN/latest)
 
 GreenVenturesChain Introduction
 =====================================
