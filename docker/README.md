@@ -13,11 +13,11 @@ Run greenventureschain coin inside a docker container!
 
 ## Build greenventurescoin docker image
 ### method-1: build from Dockerfile
-1. ```git clone https://github.com/GreenVenturesChain/GreenVenturesChain.git```
-1. ```cd GreenVenturesChain/Docker && sh ./bin/build-greenventurescoin.sh```
+1. ```git clone https://github.com/GreenVentures/GreenVenturesChain.git```
+1. ```cd GreenVenturesChain/Docker && sh ./bin/build-greenventureschain.sh```
 
 ### method-2: pull from Docker Hub without build
-``` docker pull gvc/greenventurescoin ```
+``` docker pull greenventures/greenventureschain ```
 
 ## Run GreenVenturesChain Docker container
 1. create a host dir to keep container data (you are free to choose your own preferred dir path)
@@ -26,10 +26,10 @@ Run greenventureschain coin inside a docker container!
 1. first, cd into the above created node host dir and create ```data``` and ```conf``` subdirs:
    * ``` sudo mkdir data conf ```
 1. copy the entire Docker/bin dir from GreenVenturesChain repository:
-   * ``` sudo cp -r ${your_path_of_GreenVenturesChain}/Docker/bin ./ ```
+   * ``` sudo cp -r ${your_path_of_GreenVentureschain}/Docker/bin ./ ```
 1. copy WaykiCoind.conf into ```conf``` dir from GreenVenturesChain repository:
    * ``` sudo cp -r ${your_path_of_GreenVenturesChain}/Docker/GreenVenturesChain.conf ./conf/ ```
-1. modify content of ```WaykiCoind.conf``` accordingly
+1. modify content of ```GreenVenturesCoin.conf``` accordingly
    * For mainnet, please make sure ```nettype=main``` is set
    * For testnet, please make sure only ```nettype=test``` is set
    * For regtest, please make suer only ```nettype=regtest``` is set
@@ -52,7 +52,7 @@ Run greenventureschain coin inside a docker container!
 
 |Q | A|
 |--|--|
-|How to modify JSON RPC port | Two options: <br> <li>modify [GreenVenturesChain.conf](https://github.com/GreenVenturesChain/GreenVenturesChain/wiki/GreenVenturesChain.conf) (```rpcport=6968```)<li>modify docker container mapping port |
+|How to modify JSON RPC port | Two options: <br> <li>modify [GreenVenturesChain.conf](https://github.com/GreenVentures/GreenVenturesChain/wiki/GreenVenturesChain.conf) (```rpcport=6968```)<li>modify docker container mapping port |
 |How to run a testnet | modify GreenVenturesChain.conf by adding ```testnet=test```,  |
 |How to run a regtest | modify GreenVenturesChain.conf by adding ```regtest=regtest```, |
 |How to run a mainnet | modify GreenVenturesChain.conf by adding ```regtest=main```,  |
