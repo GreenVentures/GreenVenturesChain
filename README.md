@@ -1,6 +1,6 @@
 Quick Resource Access
 =====================================
-## :: Download GreenVenturesChain ```coin```
+## :: Download GreenVenturesChain
 * [GreenVenturesChain coin Binary Releases](https://github.com/GreenVenturesChain/GreenVenturesChain/wiki/Download-GreenVenturesChain-Binary-Releases)
 * Docker: ```docker pull gvc/greenventurescoin```
 
